@@ -1,0 +1,43 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block other_nav_links %}
+    
+{% endblock other_nav_links %}
+
+{% block page_title %}Disclaimer Notice{% endblock page_title %}
+
+{% block contents %}
+<div class="p-policy">
+    <h1>Disclaimer Notice</h1>
+</div>
+
+<section id="disclaimer" class="info disclaimer">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}Disclaimer Notice{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div id="disclaimer" class="disclaimer">
+    <div class="row">
+        <div class="col-xs-12 disclaimer">
+            <p><strong>Simple Portfolio</strong> is a simple website satisfying the portfolio needs of many people and striving to meet more and more of peoples (users [contractors|freelancers] and clients [employers]) demands. We put in every effort to ensure we deliver nothing but the best services to many users at no cost. We have resolved to deliver only the best in all means within our reach.</p>
+
+            <p>However, we do hereby, state: That we provide our services without giving you any guarantee that your desires and choices must or will ever be met.<br>
+            We pay much attention to your security and privacy but at no point will we be liable or held responsible for any effect or result emanating from using our products and or services no matter how big or small.
+            </p>
+            
+            <p>You are therefore responsible for whatever damages incured in the process or as a result of using any of our services. Not even we (Simple Portfolio) any of our sibling (including parent/child) websites shall be held responsible in case of any damages or disruptions you may experience during your whole period of using our wonderful and effecient services. All resulting effects, direct or indirect is/are solely your responsibility to bear.</p>
+            
+            <p>Thank you for your consent, understanding and continued use of our services.</p>
+        </div>
+    </div>
+</div>
+
+</div>
+</section>
+
+{% endblock contents %}

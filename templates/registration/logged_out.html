@@ -1,0 +1,14 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block other_nav_links %}{% endblock other_nav_links %}
+
+{% block page_title %}Logged Out{% endblock page_title %}
+
+{% block contents %}
+
+<h1>You're logged out.</h1>
+
+<a href="{% url 'login' %}" title="Login">Login Again</a> or head over to <a href="{% url 'index' %}" title="Simple Portfolio">Home Page</a> as a guest.<br> You can likewise <a href="{% url 'register' %}" title="Register new account"> Create New Account</a>
+
+{% endblock contents %}

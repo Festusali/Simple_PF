@@ -1,0 +1,208 @@
+{% extends './base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+
+{% block page_title %}
+    {{ userdata.user.first_name|default:userdata.user.username }}'s Portfolio
+{% endblock page_title %}
+
+
+{% block site_name %}
+    {{ userdata.user.first_name|default:userdata.user.username }} Portfolio
+{% endblock site_name %}
+
+
+{% block user_avatar %}
+{% if userdata.get_avatar != None %}
+    <img class="img-responsive" src="{{ userdata.get_avatar }}" alt="Profile Picture" height="350px" width="400px">
+{% else %}
+    {{ block.super }}
+{% endif %}
+{% endblock user_avatar %}
+
+
+{% block user_title %}
+    {{ userdata.user.first_name|default:userdata.user.username }}
+{% endblock user_title %}
+
+{% block user_desc %}
+    <p class="full-name">
+        {{ userdata.full_name }} | {{ userdata.phone }} | {{ userdata.get_gender_display }}
+    </p>
+    <p>
+        {% if request.user == userdata.user %}
+            [ <a href="{% url 'edit_profile' user.username 0 %}" title="Edit Profile"><span class="glyphicon glyphicon-edit"></span>Edit Profile</a> || 
+            <a href="{% url 'messages' userdata.user %}" title="View Messages">Messages</a> ||
+            <a href="{% url 'add_project' userdata.user %}" title="Add New Project">Add Project</a> ||
+            <a href="{% url 'add_experience' userdata.user %}" title="Add New Experience">Add Experience</a> ||
+            <a href="{% url 'add_certificate' userdata.user %}" title="Add New Certificate">Add Certificate</a>
+            ]
+        {% endif %}
+    </p>
+    <p>{{ userdata.action }}</p>
+    <p><a href="#contact" title="Contact">Contact Me</a></p>
+{% endblock user_desc %}
+
+{% block user_skills %}<p>{{ userdata.tags }}</p>{% endblock user_skills %}
+
+
+
+{% block projects_title %}
+    <a class="section-title" href="{% url 'projects' userdata.user %}" title="View All Projects">{{ block.super }}</a>
+{% endblock projects_title %}
+{% block project %}
+{% if userdata.get_projects %}
+<div class="row">
+    {% for pro in userdata.get_projects %}
+        <a class="item-image" href="{% url 'projects' pro.user %}#pro-{{ pro.id }}" title="{{ pro.title }}">
+        <div class="col-sm-4 project-item">
+            <img class="img-responsive pro-image" src="{{ pro.image1.url }}" alt="Project One"  height="250px" width="300px">
+            <div class="text-center">
+                {{ pro.title }}
+            </div>
+        </div>
+        </a>
+    {% endfor %}
+</div>
+{% else %}
+    <div class="row">
+        <div class="col-sm-12 project-item">
+            <h1>No Projects</h1>
+        </div>
+    </div>
+{% endif %}
+{% endblock project %}
+
+
+
+{% block experiences_title %}
+    <a class="section-title" href="{% url 'experiences' userdata.user %}" title="View All Experiences">{{ block.super }}</a>
+{% endblock experiences_title %}
+{% block experience %}
+{% if userdata.get_experiences %}
+<div class="row">
+    {% for exp in userdata.get_experiences %}
+        <a class="item-image" href="{% url 'experiences' exp.user %}#exp-{{ exp.id }}" title="{{ exp.title }}">
+        <div class="col-sm-4 experience-item">
+            <div class="text-center experience-title">
+                {{ exp.title }}
+            </div>
+            <div class="text-center experience-date">
+                {{ exp.start_date }} - {{ exp.end_date }}
+            </div>
+            <div class="text-center experience-detail">
+                {{ exp.detail }}
+            </div>
+        </div>
+        </a>
+    {% endfor %}
+</div>
+{% else %}
+    <div class="row">
+        <div class="col-sm-4 experience-item experience-title">
+            The experiences have been wonderful!
+        </div>
+    </div>
+{% endif %}
+{% endblock experience %}
+
+
+
+{% block certificates_title %}
+    <a class="section-title" href="{% url 'certificates' userdata.user %}" title="View All Certificates">{{ block.super }}</a>
+{% endblock certificates_title %}
+{% block certificate %}
+{% if userdata.get_certificates %}
+<div class="row">
+    {% for cert in userdata.get_certificates %}
+        <a class="item-image" href="{% url 'certificates' cert.user %}#cert-{{ cert.id }}" title="{{ cert.title }}">
+        <div class="col-sm-4 certificate-item">
+            <div class="text-center certificate-title">
+                {{ cert.title }}
+            </div>
+            <div class="text-center certificate-date">
+                {{ cert.start_date }} - {{ cert.end_date }}
+            </div>
+            <div class="text-center certificate-detail">
+                {{ cert.detail }}
+            </div>
+        </div>
+        </a>
+    {% endfor %}
+</div>
+{% else %}
+    <div class="row">
+        <div class="col-sm-4 certificate-item certificate-title">
+            I acquired many certificates along the line.
+        </div>
+    </div>
+{% endif %}
+{% endblock certificate %}
+
+
+
+
+{% block about_avatar %} 
+{% if userdata.get_avatar != None %}
+    <img class="img-responsive" src="{{ userdata.get_avatar }}" alt="Profile Picture" height="96%" width="96%">
+{% else %}
+    {{ block.super }}
+{% endif %}
+{% endblock about_avatar %}
+
+
+{% block about_social %}
+{% if userdata.facebook %}
+    <li>
+        <a href="{{ userdata.facebook }}" title="Connect me on Facebook" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+    </li>
+{% endif %}
+{% if userdata.twitter %}
+    <li>
+        <a href="{{ userdata.twitter }}" title="Connect me on Twitter" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+    </li>
+{% endif %}
+{% if userdata.linkedin %}
+    <li>
+        <a href="{{ userdata.linkedin }}" title="Connect me on LinkedIn" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+    </li>
+{% endif %}
+{% if userdata.github %}
+    <li>
+        <a href="{{ userdata.github }}" title="Connect me on Github" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
+    </li>
+{% endif %}
+{% endblock about_social %}
+
+
+{% block about_tags %}{{ userdata.tags }} {% endblock about_tags %}
+
+{% block about_bio %}{{ userdata.bio }} {% endblock about_bio %}
+
+{% block about_target %}{{ userdata.target }} {% endblock about_target %}
+
+{% block about_action %}{{ userdata.action }} {% endblock about_action %}
+
+
+
+{% block contact_form %}
+{% if form.is_multipart %}
+    <form enctype="multipart/form-data" method="POST" action="{% url 'message' userdata %}">
+{% else %}
+    <form action="{% url 'message' userdata %}" method="POST">
+{% endif %}
+
+{% csrf_token %}
+
+{{ msg_form|crispy }}
+
+<button type="submit" class="btn btn-primary btn-outline success">
+    <span class="glyphicon glyphicon-envelope"></span> Send Message
+</button>
+</form>
+{% endblock contact_form %}
+
+
+

@@ -1,0 +1,80 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block other_nav_links %}
+    <li class="page-scroll">
+        <a href="{% url 'profile' userdata %}#about" title="About {{ userdata }}">About</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'profile' userdata %}#contact" title="Contact {{ userdata }}">Contact</a>
+    </li>
+    <br>
+    <li class="page-scroll">
+        <a href="{% url 'projects' userdata %}#projects" title="{{ userdata }} Projects">Projects</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'experiences' userdata %}#experiences" title="{{ userdata }} Experiences">Experiences</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'certificates' userdata %}#certificates" title="{{ userdata }} Certificates">Certificates</a>
+    </li>
+{% endblock other_nav_links %}
+
+{% block page_title %}{{ userdata }} Messages{% endblock page_title %}
+
+{% block contents %}
+<div class="container">
+    <h1>Messages</h1>
+</div>
+
+<section id="messages" class="info messages">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}{{ userdata }} Messages{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div class="details text-center">
+    <h4>{{ userdata }} Private Messages</h4>
+</div>
+
+
+{% block messages %}
+{% if messages %}
+{% for msg in messages %}
+<div id="msg-{{ msg.id }}" class="message">
+    <div class="row msg-desc">
+        <div class="col-xs-12 message-item">
+            <h3 class="text-center">
+                From: {{ msg.sender }} | on: {{ msg.date }}
+                <span class="float-right">
+                    <a href="{% url 'del_message' msg.id %}" title="Delete Message">Delete</a>
+                </span>
+            </h3>
+            <div>
+                Sender Email: {{ msg.email }} | Sender Phone Number: {{ msg.phone }}
+            </div>
+            <div>
+                {{ msg.message }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% else %}
+<div class="row message">
+    <h3>No Messages</h3>
+</div>
+{% endif %}
+
+{% endblock messages %}
+
+
+</div>
+</section>
+
+{% endblock contents %}
+

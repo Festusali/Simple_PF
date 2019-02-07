@@ -1,0 +1,122 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block other_nav_links %}
+    <li class="page-scroll">
+        <a href="{% url 'profile' userdata %}#about" title="About {{ userdata }}">About</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'profile' userdata %}#contact" title="Contact {{ userdata }}">Contact</a>
+    </li>
+    <br>
+    <li class="page-scroll">
+        <a href="{% url 'projects' userdata %}#projects" title="{{ userdata }} Projects">Projects</a>
+    </li>
+    <li class="page-scroll">
+        <a class="active" href="#experiences" title="{{ userdata }} Experiences">Experiences</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'certificates' userdata %}#certificates" title="{{ userdata }} Certificates">Certificates</a>
+    </li>
+{% endblock other_nav_links %}
+
+{% block page_title %}{{ userdata }} Experiences{% endblock page_title %}
+
+{% block contents %}
+<div class="container">
+    <h1>Experiences</h1>
+</div>
+
+<section id="experiences" class="info experiences">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}{{ userdata }} Experiences{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div class="details text-center">
+    <h4>
+        Some of {{ userdata }} Experiences
+        {% if request.user == userdata.user %}
+        <a class="add-experience" href="{% url 'add_experience' userdata.user %}" title="Add New Experience"><span class="glyphicon glyphicon-plus"></span>Add Experience</a>
+        {% endif %}
+    </h4>
+</div>
+
+
+{% block experiences %}
+{% if experiences %}
+{% for exp in experiences %}
+<div id="exp-{{ exp.id }}" class="experience">
+    <div class="row exp-desc">
+        <div class="col-xs-12 experience-item">
+            <h3 class="text-center">
+                {{ exp.title }}
+                {% if request.user == exp.user.user %}
+                <span class="float-right">
+                    <a href="{% url 'edit_experience' exp.id %}" title="Edit Experience">Edit</a>
+                </span> |
+                <span class="float-right">
+                    <a href="{% url 'del_experience' exp.id %}" title="Delete Experience">Delete</a>
+                </span>
+                {% endif %}
+            </h3>
+            {{ exp.tags }}<br>
+            Started: {{ exp.start_date }} completed: {{ exp.end_date }}
+            <p>
+                {{ exp.detail }}
+            </p>
+        </div>
+    </div>
+    {% if exp.image1 %}
+    <div class="row full-exp-image">
+        <div class="col-xs-12 full-exp-image1">
+            <img class="img-responsive full-exp-image" src="{{ exp.image1.url }}" alt="Experience Image One">
+        </div>
+    </div>
+    {% endif %}
+    {% if exp.image2 %}
+    <div class="row full-exp-image">
+        <div class="col-xs-12 full-exp-image2">
+            <img class="img-responsive full-exp-image" src="{{ exp.image2.url }}" alt="Experience Image Two">
+        </div>
+    </div>
+    {% endif %}
+    {% if exp.image3 %}
+    <div class="row full-exp-image">
+        <div class="col-xs-12 full-exp-image3">
+            <img class="img-responsive full-exp-image" src="{{ exp.image3.url }}" alt="Experience Image Three">
+        </div>
+    </div>
+    {% endif %}
+</div><p></p>
+{% endfor %}
+
+{% else %}
+<div class="row experience">
+    <h3>No Experiences</h3>
+</div>
+{% endif %}
+
+{% endblock experiences %}
+
+
+</div>
+</section>
+
+<section class="contact success">
+<div class="container success">
+    <div class="row">
+        <div class="contact success">
+            <div class="target">{{ userdata.target }}</div>
+            <div class="action">{{ userdata.action }}</div>
+            <a href="{% url 'profile' userdata %}#contact" title="Request for my services"><input type="button" class="btn btn-info btn-lg btn-outline text-right" value="Request My Services Now!"></a>
+        </div>
+    </div>
+</div>
+</section>
+
+{% endblock contents %}
+

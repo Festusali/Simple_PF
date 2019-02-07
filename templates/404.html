@@ -1,0 +1,29 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block other_nav_links %}{% endblock other_nav_links %}
+
+{% block page_title %}404 | Content not Found{% endblock page_title %}
+
+{% block contents %}
+
+<section id="404" class="info">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}Content Not Nound{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+
+<div class="details">
+    <p class="note"><span class="emphasis">{{ exception }}, </span>the requested content at <span class="emphasis">{{ request_path }} </span>could not be found.</p>
+    This error mosty occur when typing long website address by hand. Please try and verify that the address is correctly typed.<br>
+    <p>At the moment you can navigate to the <a href="{% url 'index' %}" title="Simple Portfolio">Home Page</a></p>
+</div>
+
+</div>
+</section>
+
+{% endblock contents %}

@@ -1,0 +1,122 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block other_nav_links %}
+    <li class="page-scroll">
+        <a href="{% url 'profile' userdata %}#about" title="About {{ userdata }}">About</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'profile' userdata %}#contact" title="Contact {{ userdata }}">Contact</a>
+    </li>
+    <br>
+    <li class="page-scroll">
+        <a href="{% url 'projects' userdata %}#projects" title="{{ userdata }} Projects">Projects</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'experiences' userdata %}#experiences" title="{{ userdata }} Experiences">Experiences</a>
+    </li>
+    <li class="page-scroll">
+        <a class="active" href="#certificates" title="{{ userdata }} Certificates">Certificates</a>
+    </li>
+{% endblock other_nav_links %}
+
+{% block page_title %}{{ userdata }} Certificates{% endblock page_title %}
+
+{% block contents %}
+<div class="container">
+    <h1>Certificates</h1>
+</div>
+
+<section id="certificates" class="info certificates">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}{{ userdata }} Certificates{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div class="details text-center">
+    <h4>
+        Some of {{ userdata }} Certificates
+        {% if request.user == userdata.user %}
+        <a class="add-certificate" href="{% url 'add_certificate' userdata.user %}" title="Add New Certificate"><span class="glyphicon glyphicon-plus"></span>Add Certificate</a>
+        {% endif %}
+    </h4>
+</div>
+
+
+{% block certificates %}
+{% if certificates %}
+{% for cert in certificates %}
+<div id="cert-{{ cert.id }}" class="certificate">
+    <div class="row cert-desc">
+        <div class="col-xs-12 certificate-item">
+            <h3 class="text-center">
+                {{ cert.title }}
+                {% if request.user == cert.user.user %}
+                <span class="float-right">
+                    <a href="{% url 'edit_certificate' cert.id %}" title="Edit Certificate">Edit</a>
+                </span> |
+                <span class="float-right">
+                    <a href="{% url 'del_certificate' cert.id %}" title="Delete Certificate">Delete</a>
+                </span>
+                {% endif %}
+            </h3>
+            {{ cert.tags }}<br>
+            Started: {{ cert.start_date }} completed: {{ cert.end_date }}
+            <p>
+                {{ cert.detail }}
+            </p>
+        </div>
+    </div>
+    {% if cert.image1 %}
+    <div class="row full-cert-image">
+        <div class="col-xs-12 full-cert-image1">
+            <img class="img-responsive full-cert-image" src="{{ cert.image1.url }}" alt="Certificate Image One">
+        </div>
+    </div>
+    {% endif %}
+    {% if cert.image2 %}
+    <div class="row full-cert-image">
+        <div class="col-xs-12 full-cert-image2">
+            <img class="img-responsive full-cert-image" src="{{ cert.image2.url }}" alt="Certificate Image Two">
+        </div>
+    </div>
+    {% endif %}
+    {% if cert.image3 %}
+    <div class="row full-cert-image">
+        <div class="col-xs-12 full-cert-image3">
+            <img class="img-responsive full-cert-image" src="{{ cert.image3.url }}" alt="Certificate Image Three">
+        </div>
+    </div>
+    {% endif %}
+</div><p></p>
+{% endfor %}
+
+{% else %}
+<div class="row certificate">
+    <h3>No Certificates</h3>
+</div>
+{% endif %}
+
+{% endblock certificates %}
+
+
+</div>
+</section>
+
+<section class="contact success">
+<div class="container success">
+    <div class="row">
+        <div class="contact success">
+            <div class="target">{{ userdata.target }}</div>
+            <div class="action">{{ userdata.action }}</div>
+            <a href="{% url 'profile' userdata %}#contact" title="Request for my services"><input type="button" class="btn btn-info btn-lg btn-outline text-right" value="Request My Services Now!"></a>
+        </div>
+    </div>
+</div>
+</section>
+
+{% endblock contents %}
+

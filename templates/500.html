@@ -1,0 +1,21 @@
+{% load static %}
+
+{% block other_nav_links %}{% endblock other_nav_links %}
+
+{% block page_title %}<title>Server Error</title>{% endblock page_title %}
+
+{% block contents %}
+
+
+<h1>Server Downtime</h1>
+<h3>The Server Is Currently Down</h3>
+
+{% block contents %}
+
+<div class="details">
+    <p class="note">Our server is currently down. Please try again later.</p>p>
+        The problem is from our end and we are working on fixing it right away.
+    <p>At the moment you can navigate to the <a href="{% url 'index' %}" title="Simple Portfolio">Home Page</a></p>
+</div>
+
+{% endblock contents %}

@@ -1,0 +1,29 @@
+{% extends './base.html' %}
+{% load static %}
+
+
+{% block other_nav_links %}{% endblock other_nav_links %}
+
+{% block page_title %}Message Sent Successfully{% endblock page_title %}
+
+{% block contents %}
+
+<section id="message" class="message">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}Message Successfully Sent{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div>
+    You message was sent successfully. Thank you. You will be replied soon.
+</div>
+
+
+</div>
+</section>
+
+{% endblock contents %}
+

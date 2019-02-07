@@ -1,0 +1,49 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block other_nav_links %}{% endblock other_nav_links %}
+
+{% block page_title %}Log In to Simple Portfolio{% endblock page_title %}
+
+{% block contents %}
+
+<section id="login" class="info">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}Login to your Account{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div class="register">
+  <a href="{% url 'register' %}" title="Register new account">New Account </a>
+</div>
+
+{% if form.errors %}
+    <p class="errorlist">Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+
+    <div class="login">
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-primary btn-outline success">
+          <span class="glyphicon glyphicon-log-in"></span> Login
+      </button>
+      <input type="hidden" name="next" value="{{ next }}" /></td>
+    </div>
+</form>
+
+<div>
+  <a href="{% url 'password_reset' %}">Lost Password?</a> Or <a href="{% url 'register' %}" title="Register new account">Create New Account.</a>
+</div>
+
+<a href="{% url 'index' %}" title="Home Page">Continue without login</a>
+
+</div>
+</section>
+
+{% endblock contents %}

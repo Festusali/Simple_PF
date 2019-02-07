@@ -1,0 +1,44 @@
+{% extends './base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block other_nav_links %}{% endblock other_nav_links %}
+
+{% block page_title %}{{ title }}{% endblock page_title %}
+
+{% block contents %}
+
+<section id="project" class="info">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}{{ title }}{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div>
+    {{ desc }}
+</div>
+
+
+{% if form.is_multipart %}
+    <form enctype="multipart/form-data" method="POST" action="">
+{% else %}
+    <form action="" method="POST">
+{% endif %}
+
+{% csrf_token %}
+
+{{ form|crispy }}
+
+<input type="submit" class="btn btn-primary btn-outline" value="{{ btn_value }}">
+
+</form>
+
+
+</div>
+</section>
+
+{% endblock contents %}
+

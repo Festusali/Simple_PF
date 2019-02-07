@@ -1,0 +1,95 @@
+{% extends './base.html' %}
+{% load static %}
+
+
+{% block other_nav_links %}{% endblock other_nav_links %}
+
+{% block page_title %}Simple Portfolio{% endblock page_title %}
+
+{% block contents %}
+
+<section id="details" class="info">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}Simple Portfolio{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+        <p class="text-center">Free, Simple, Easy to Use Online Portfolio</p>
+    </div>
+</div>
+
+<div class="row info">
+    <div class="col-xs-12">
+        <div>
+            <h3 class="text-center">Welcome to Simple Portfolio</h3>
+            <p>
+                The best free and easy to use online portfolio website. Simple Portfolio is here to satisfy the need of teeming freelancers and independent contractors who may be having litle difficulties setting up their own portfolio website.<br><br>
+                You may be looking for a way to showcase yourself and your projects/talents online but lack what it takes to getting your own portfolio running on the internet, look no further, Simple Portfolio is here to the rescue.
+            </p>
+            <p>
+                To start, just <a href="{% url 'register' %}" title="Register Account">register an account</a> to start enjoying nummerous benefits we have set up waiting for you to tap into. No need to pay a dime, no wasting of time. You're just a minute away from getting your own personal environment where you can showcase your interesting projects to potential clients leveraging on eye catching design and simplicity of Simple Portfolio.
+            </p>
+        </div>
+    </div>
+</div>
+
+</div>
+</section>
+
+<section id="details" class="success">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2 class="text-center">Features of Simple Portfolio</h2>
+        <hr class="star-primary">
+        <p class="text-center">Free, Simple, Easy to Use Online Portfolio</p>
+    </div>
+</div>
+
+<div class="row success">
+    <div class="col-xs-12">
+        <div>
+            <p>
+                After initial account setup (Registration), you get access to your personal account where you will;
+            </p>
+            <ul>
+                <li>
+                    <p><span class="text-center"><strong>Create Projects</strong></span><br>
+                    You will be able to add projects that you want you potential clients to see and be convinced to hire you. Each project has three image fields which you can use to back up your claims. A picture they say is worth more than a thousand words.</p>
+                </li>
+                <li>
+                    <p><span class="text-center"><strong>Create Experiences</strong></span><br>
+                    Have you worked with a Fortue 500 company or assisted, either independently or colaboratively in delivering that awesome project that you are so proud of? The experiences section is the best place to talk about those moments you can't stop bragging about. Do it with style and win the trust of potential clients/employers.</p>
+                </li>
+                <li>
+                    <p><span class="text-center"><strong>Create Certificates</strong></span><br>
+                    The 21st Century Online carrer has little to worry about certificates. However, they're not totally useless. If you have been certified by that industry big brand, here is an opportunity to show the world what you've got. The simple truth is that your certificates joined with your projects, gives you more advantage. Hence, we have given you the coice to share and stand heads high.</p>
+                </li>
+                <li>
+                    <p><span class="text-center"><strong>Message Box</strong></span><br>
+                    Without a means of communication, and keeping contacts, your journey into being a freelancer or independent contractor is largely limited. We know what it means to loose the contact of that special client. And we know how it feels when you loose a contract because you were not reachable at  time when the contract is due to be signed.<br>
+                    Therefore, we have provided you with a simple message box where your clients can leave urgent messages for you without giving any stress. As soon as you have your own account, you get a free message box where you can access all your messages and delete only the ones you don't need any longer.
+                    Note: All your messages are sent to your registered email inbox. We only keep a copy in your account for easy access within the site and for references.</p>
+                </li>
+                <li>
+                    <p><span class="text-center"><strong>Your Profile</strong></span><br>
+                    Inside your profile, you can set your bio, social network accounts, skills, target clients or field of specialty, a short call to action, and lots more.<br>
+                    We make it easy for you to show yourself, but even easier for potential clients/ employers to locate you and see how you can help them achieve their needs.</p>
+                </li>
+                <li>
+                    <p><span class="text-center"><strong>Register Now!!!</strong></span><br>
+                    You alone can hold yourself longer, but for us, we have made it so easy for you to get your presence noticed online. Register free to start the great journey that will sure be rewarding.<br>
+                    <a href="{% url 'register' %}" title="Create Free Account" class="btn btn-lg btn-outline">
+                        <i class="fa fa-user"></i> Create Account
+                    </a></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+</section>
+
+{% endblock contents %}
+

@@ -1,0 +1,122 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block other_nav_links %}
+    <li class="page-scroll">
+        <a href="{% url 'profile' userdata %}#about" title="About {{ userdata }}">About</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'profile' userdata %}#contact" title="Contact {{ userdata }}">Contact</a>
+    </li>
+    <br>
+    <li class="page-scroll">
+        <a class="active" href="#projects" title="{{ userdata }} Projects">Projects</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'experiences' userdata %}#experiences" title="{{ userdata }} Experiences">Experiences</a>
+    </li>
+    <li class="page-scroll">
+        <a href="{% url 'certificates' userdata %}#certificates" title="{{ userdata }} Certificates">Certificates</a>
+    </li>
+{% endblock other_nav_links %}
+
+{% block page_title %}{{ userdata }} Projects{% endblock page_title %}
+
+{% block contents %}
+<div class="container">
+    <h1>Projects</h1>
+</div>
+
+<section id="projects" class="info projects">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}{{ userdata }} Projects{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div class="details text-center">
+    <h4>
+        Some of {{ userdata }} Projects
+        {% if request.user == userdata.user %}
+        <a class="add-project" href="{% url 'add_project' userdata.user %}" title="Create New Project"><span class="glyphicon glyphicon-plus"></span>New Project</a>
+        {% endif %}
+    </h4>
+</div>
+
+
+{% block projects %}
+{% if projects %}
+{% for pro in projects %}
+<div id="pro-{{ pro.id }}" class="project">
+    <div class="row pro-desc">
+        <div class="col-xs-12 project-item">
+            <h3 class="text-center">
+                {{ pro.title }}
+                {% if request.user == pro.user.user %}
+                <span class="float-right">
+                    <a href="{% url 'edit_project' pro.id %}" title="Edit Project">Edit</a>
+                </span> |
+                <span class="float-right">
+                    <a href="{% url 'del_project' pro.id %}" title="Delete Project">Delete</a>
+                </span>
+                {% endif %}
+            </h3>
+            {{ pro.tags }}<br>
+            Started: {{ pro.start_date }} completed: {{ pro.end_date }}
+            <p>
+                {{ pro.details }}
+            </p>
+        </div>
+    </div>
+    {% if pro.image1 %}
+    <div class="row full-pro-image">
+        <div class="col-xs-12 full-pro-image1">
+            <img class="img-responsive full-pro-image" src="{{ pro.image1.url }}" alt="Project Image One">
+        </div>
+    </div>
+    {% endif %}
+    {% if pro.image2 %}
+    <div class="row full-pro-image">
+        <div class="col-xs-12 full-pro-image2">
+            <img class="img-responsive full-pro-image" src="{{ pro.image2.url }}" alt="Project Image Two">
+        </div>
+    </div>
+    {% endif %}
+    {% if pro.image3 %}
+    <div class="row full-pro-image">
+        <div class="col-xs-12 full-pro-image3">
+            <img class="img-responsive full-pro-image" src="{{ pro.image3.url }}" alt="Project Image Three">
+        </div>
+    </div>
+    {% endif %}
+</div><p></p>
+{% endfor %}
+
+{% else %}
+<div class="row project">
+    <h3>No Projects</h3>
+</div>
+{% endif %}
+
+{% endblock projects %}
+
+
+</div>
+</section>
+
+<section class="contact success">
+<div class="container success">
+    <div class="row">
+        <div class="contact success">
+            <div class="target">{{ userdata.target }}</div>
+            <div class="action">{{ userdata.action }}</div>
+            <a href="{% url 'profile' userdata %}#contact" title="Request for my services"><input type="button" class="btn btn-info btn-lg btn-outline text-right" value="Request My Services Now!"></a>
+        </div>
+    </div>
+</div>
+</section>
+
+{% endblock contents %}
+

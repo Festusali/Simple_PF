@@ -1,0 +1,27 @@
+{% extends 'portfolio/base.html' %}
+{% load static %}
+
+{% block other_nav_links %}{% endblock other_nav_links %}
+
+{% block page_title %}Error 400{% endblock page_title %}
+
+{% block contents %}
+
+<section id="reset-password" class="info">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}Suspecious Request{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div class="warning">
+        <p>We can't verify that your request is genuine.<br>Please re-evalute what you want to do before trying again.</p><br>
+    <p>At the moment you can navigate to the <a href="{% url 'index' %}" title="Simple Portfolio">Home Page</a></p>
+</div>
+
+</div>
+</section>
+
+{% endblock contents %}

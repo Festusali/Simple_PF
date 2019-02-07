@@ -1,0 +1,29 @@
+{% extends './base.html' %}
+{% load static %}
+
+{% block other_nav_links %}{% endblock other_nav_links %}
+
+{% block page_title %}Permission Denied{% endblock page_title %}
+
+{% block contents %}
+
+<section id="permission" class="warning">
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 text-center">
+        <h2>{% block title %}Permissions Denied{% endblock title %}</h2>
+        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+    </div>
+</div>
+
+<div id="warning">
+    <h4>
+        {{ perm|default:"You don't have permission to complete this request." }}
+    </h4>
+</div>
+
+</div>
+</section>
+
+
+{% endblock contents %}
