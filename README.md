@@ -17,7 +17,7 @@ security) with a copy of each message sent to the user's registered email.
             ========================================
 
 To create free Simple Portfolio Account,
-Goto: (https://portfolio.pythonanywhere.com/), and follow the instructions
+Goto: (https://simpleportfolio.pythonanywhere.com/), and follow the instructions
 to get free account which you can setup properly and start using as your
 personal portfolio for attracting and hooking potential clients.
 
@@ -36,7 +36,8 @@ all set.
                     Bugs and Other Issues
             ========================================
 
-If you see any bug other issues, please opena new issue via; (https://github.com/Festusali/Simple_PF/issues) here on GitHub or send me a 
+If you see any bug other issues, please opena new issue via; 
+(https://github.com/Festusali/Simple_PF/issues) here on GitHub or send me a 
 mail at isfestus@gmail.com or festusali@gmail.com
 
 
@@ -61,7 +62,7 @@ me, you will surely find me in company of my family and or friends.
 
 I am available for paid remote jobs and you can reach me via email using;
 (isfestus@gmail.com, festusali@gmail.com) see also my portfolio; 
-'https://portfolio.pythonanywhere.com/user/Festus/' Thank you!!!
+'https://simpleportfolio.pythonanywhere.com/user/Festus/' Thank you!!!
 
 
                          Contributing
