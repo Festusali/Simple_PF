@@ -107,19 +107,19 @@ class UserData(models.Model):
     
 
     def get_projects(self):
-        return Project.objects.filter(user=self.id) or None
+        return Project.objects.filter(user=self.id) or []
     
 
     def get_certificates(self):
-        return Certificate.objects.filter(user=self.id) or None
+        return Certificate.objects.filter(user=self.id) or []
     
 
     def get_experiences(self):
-        return Experience.objects.filter(user=self.id) or None
+        return Experience.objects.filter(user=self.id) or []
 
     
     def get_messages(self):
-        return Message.objects.filter(user=self.id) or None
+        return Message.objects.filter(user=self.id) or []
     
 
 

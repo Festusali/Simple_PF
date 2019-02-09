@@ -155,7 +155,7 @@ APPEND_SLASH = True
 
 
 # Email Backend for development
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 #Relivant settings for sending email
 DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL")

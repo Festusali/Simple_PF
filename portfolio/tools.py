@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import random, secrets
 from smtplib import SMTPException
-#from django.contrib.auth.models import User
 from django.core.mail import send_mail, BadHeaderError
 
 
@@ -61,24 +60,25 @@ def send_confirm_mail(email, username):
     token = make_token()
     subject = "Simple Portfolio: Confirm Account Registration"
 
-    body = """This email address ({email}) was used to register a new account at https://portfolio.pythonanywhere.com/Simple Portfolio.\n
-    Please click this link to confirm your registration http://portfolio.pythonanywhere.com/u/verify/{username}/{token}/{code}/Confirm Email.\n
-    Alternatively, if the link above is not clickable, you can visit https://portfolio.pythonanywhere.com/u/verify/{username}/ and enter {code} as your verification code.\n\n
+    body = """Thank you for registering an account with us. \n
+    This email address ({email}) was used to register a new account at https://simpleportfolio.pythonanywhere.com/ Simple Portfolio.\n
+    Please click this link to confirm your registration http://simpleportfolio.pythonanywhere.com/u/verify/{username}/{token}/{code}/Confirm Email.\n
+    Alternatively, if the link above is not clickable, you can visit https://simpleportfolio.pythonanywhere.com/u/verify/{username}/ and enter {code} as your verification code.\n\n
     Note: This link expires automatically in 48hrs and becomes invalid after the specified period.\n
     If you received this mail in error, please disregard it and we will never contact you again.\n
     This is an automatically generated email and hence should not be replied.\n
-    If you need further information, please visit https://portfolio.pythonanywhere.com/contact%20us/ or better still send a mail to isfestus@gmail.com.\n\n
+    If you need further information, please visit https://simpleportfolio.pythonanywhere.com/contact%20us/ or better still send a mail to isfestus@gmail.com.\n\n
     Kind regards,\n
     Simple Portfolio.\n
     """.format(username=username, email=email, token=token["token"], code=token["code"])
 
-    html = """This email address ({email}) was used to register a new account at <a href="https://portfolio.pythonanywhere.com/">Simple Portfolio</a>.<br>
-    <p>Please click this link to confirm your registration <a href="http://portfolio.pythonanywhere.com/u/verify/{username}/{token}/{code}/">Confirm Email</a> </p>
-    <p>Alternatively, if the link above is not clickable, you can visit https://portfolio.pythonanywhere.com/u/verify/{username}/ and enter <b>{code}</b> as your verification code. </p>
+    html = """This email address ({email}) was used to register a new account at <a href="https://simpleportfolio.pythonanywhere.com/">Simple Portfolio</a>.<br>
+    <p>Please click this link to confirm your registration <a href="http://simpleportfolio.pythonanywhere.com/u/verify/{username}/{token}/{code}/">Confirm Email</a> </p>
+    <p>Alternatively, if the link above is not clickable, you can visit https://simpleportfolio.pythonanywhere.com/u/verify/{username}/ and enter <b>{code}</b> as your verification code. </p>
     <p><b>Note:</b> This link expires automatically in 48hrs and becomes invalid after the specified period.</p>
     <p>If you received this mail in error, please disregard it and we will never contact you again.</p>
     <p>This is an automatically generated email and hence should not be replied.<br>
-    If you need further information, please visit https://portfolio.pythonanywhere.com/contact%20us/ or better still send a mail to isfestus@gmail.com.</p>
+    If you need further information, please visit https://simpleportfolio.pythonanywhere.com/contact%20us/ or better still send a mail to isfestus@gmail.com.</p>
     <p>Kind regards,<br>
     Simple Portfolio.</p>
     """.format(username=username, email=email, token=token["token"], code=token["code"])
