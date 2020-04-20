@@ -63,9 +63,9 @@
                 </span>
                 {% endif %}
             </h3>
-            {{ exp.tags }}<br>
-            Started: {{ exp.start_date }} completed: {{ exp.end_date }}
             <p>
+                {{ exp.tags }}<br>
+                Started: {{ exp.start_date }} completed: {{ exp.end_date }}<br>
                 {{ exp.detail }}
             </p>
         </div>
@@ -73,23 +73,24 @@
     {% if exp.image1 %}
     <div class="row full-exp-image">
         <div class="col-xs-12 full-exp-image1">
-            <img class="img-responsive full-exp-image" src="{{ exp.image1.url }}" alt="Experience Image One">
+            <img class="img-responsive full-exp-image" src="{{ exp.image1.url }}" alt="Experience Image One"><br>
+            {{ exp.image_desc }}
         </div>
-    </div>
+    </div><hr class="star-primary">
     {% endif %}
     {% if exp.image2 %}
     <div class="row full-exp-image">
         <div class="col-xs-12 full-exp-image2">
             <img class="img-responsive full-exp-image" src="{{ exp.image2.url }}" alt="Experience Image Two">
         </div>
-    </div>
+    </div><hr class="star-primary">
     {% endif %}
     {% if exp.image3 %}
     <div class="row full-exp-image">
         <div class="col-xs-12 full-exp-image3">
             <img class="img-responsive full-exp-image" src="{{ exp.image3.url }}" alt="Experience Image Three">
         </div>
-    </div>
+    </div><hr class="star-primary">
     {% endif %}
 </div><p></p>
 {% endfor %}

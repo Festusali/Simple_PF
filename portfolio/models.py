@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import AbstractUser, UserManager
 
-from .tools import pic_path, pro_pho_path
+from .tools import (pic_path, pro_pho_path, cert_pho_path, exp_pho_path)
 
 
 
@@ -96,7 +96,7 @@ class UserData(models.Model):
 
     
     def full_name(self):
-        return self.user.get_full_name()+self.other_name or self.user.username
+        return self.user.get_full_name()+' '+self.other_name or self.user.username
 
     
     def get_avatar(self):
@@ -133,10 +133,16 @@ class Project(models.Model):
     tags = models.CharField(max_length=200, help_text="Hash tags", blank=True)
     image1 = models.ImageField(upload_to=pro_pho_path, help_text="Project photo",
         blank=True)
+    image1_desc = models.CharField(max_length=150, 
+        help_text='Image one description', blank=True)
     image2 = models.ImageField(upload_to=pro_pho_path, help_text="Project photo",
         blank=True)
+    image2_desc = models.CharField(max_length=150, 
+        help_text='Image two description', blank=True)
     image3 = models.ImageField(upload_to=pro_pho_path, help_text="Project photo",
         blank=True)
+    image3_desc = models.CharField(max_length=150, 
+        help_text='Image three description', blank=True)
     start_date = models.DateField(help_text="Date initiated. In this form; yyyy-mm-dd (i.e, 2018-12-31)", blank=True)
     end_date = models.DateField(help_text="Due/end date. In this form; yyyy-mm-dd (i.e, 2018-12-31)", blank=True)
 
@@ -170,6 +176,10 @@ class Certificate(models.Model):
     title = models.CharField(max_length=200, help_text="Short description")
     detail = models.TextField(max_length=1000, help_text="Long description")
     tags = models.CharField(max_length=200, help_text="Hash tags", blank=True)
+    image = models.ImageField(upload_to=cert_pho_path, 
+        help_text="Certificate photo", blank=True)
+    image_desc = models.CharField(max_length=150, 
+        help_text='Image description', blank=True)
     date = models.DateField(help_text="Date acquired", blank=True)
 
 
@@ -186,6 +196,10 @@ class Experience(models.Model):
     title = models.CharField(max_length=200, help_text="Short description")
     detail = models.TextField(max_length=1000, help_text="Long description")
     tags = models.CharField(max_length=200, help_text="Hash tags", blank=True)
+    image = models.ImageField(upload_to=exp_pho_path, 
+        help_text="Experience photo", blank=True)
+    image_desc = models.CharField(max_length=150, 
+        help_text='Image description', blank=True)
     start_date = models.DateField(help_text="Beginning date", blank=True)
     end_date = models.DateField(help_text="End date", blank=True)
 

@@ -513,26 +513,3 @@ fieldset[disabled] .btn-success.active {
   display: none;
 }
 
-
-.pro-image {
-  height: 250px;
-  width: 300px;
-}
-
-.full-pro-image {
-  max-height: 750px;
-  max-width: 900px;
-  min-height: 500px;
-  min-width: 500px;
-}
-
-
-.active {
-  background-color: aqua;
-}
-
-div a.item-image, a.section-title {
-  color: #fdfcfc;
-}
-
-

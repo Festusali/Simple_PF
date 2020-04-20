@@ -63,9 +63,9 @@
                 </span>
                 {% endif %}
             </h3>
-            {{ cert.tags }}<br>
-            Started: {{ cert.start_date }} completed: {{ cert.end_date }}
             <p>
+                {{ cert.tags }}<br>
+                Started: {{ cert.start_date }} completed: {{ cert.end_date }}<br>
                 {{ cert.detail }}
             </p>
         </div>
@@ -73,23 +73,24 @@
     {% if cert.image1 %}
     <div class="row full-cert-image">
         <div class="col-xs-12 full-cert-image1">
-            <img class="img-responsive full-cert-image" src="{{ cert.image1.url }}" alt="Certificate Image One">
+            <img class="img-responsive full-cert-image" src="{{ cert.image1.url }}" alt="Certificate Image One"><br>
+            {{ cert.image_desc }}
         </div>
-    </div>
+    </div><hr class="star-primary">
     {% endif %}
     {% if cert.image2 %}
     <div class="row full-cert-image">
         <div class="col-xs-12 full-cert-image2">
             <img class="img-responsive full-cert-image" src="{{ cert.image2.url }}" alt="Certificate Image Two">
         </div>
-    </div>
+    </div><hr class="star-primary">
     {% endif %}
     {% if cert.image3 %}
     <div class="row full-cert-image">
         <div class="col-xs-12 full-cert-image3">
             <img class="img-responsive full-cert-image" src="{{ cert.image3.url }}" alt="Certificate Image Three">
         </div>
-    </div>
+    </div><hr class="star-primary">
     {% endif %}
 </div><p></p>
 {% endfor %}

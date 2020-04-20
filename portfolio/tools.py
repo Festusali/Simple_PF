@@ -35,7 +35,19 @@ def pic_path(instance, filename):
 
 def pro_pho_path(instance, filename):
     """Generates the path where user project pictures will be saved."""
-    return "images/projects/%s%s.%s"%(instance.start_date, 
+    return "images/projects/%s_%s.%s"%(instance.user, 
+        filename.split('.')[0], filename.split('.')[-1])
+
+
+def cert_pho_path(instance, filename):
+    """Generates the path where user certificate images will be saved."""
+    return "images/certificates/%s_%s.%s"%(instance.user, 
+        filename.split('.')[0], filename.split('.')[-1])
+
+
+def exp_pho_path(instance, filename):
+    """Generates the path where user experience images will be saved."""
+    return "images/experiences/%s_%s.%s"%(instance.user, 
         filename.split('.')[0], filename.split('.')[-1])
 
 

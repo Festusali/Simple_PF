@@ -63,9 +63,9 @@
                 </span>
                 {% endif %}
             </h3>
-            {{ pro.tags }}<br>
-            Started: {{ pro.start_date }} completed: {{ pro.end_date }}
             <p>
+                {{ pro.tags }}<br>
+                Started: {{ pro.start_date }} | completed: {{ pro.end_date }}<br>
                 {{ pro.details }}
             </p>
         </div>
@@ -73,23 +73,26 @@
     {% if pro.image1 %}
     <div class="row full-pro-image">
         <div class="col-xs-12 full-pro-image1">
-            <img class="img-responsive full-pro-image" src="{{ pro.image1.url }}" alt="Project Image One">
+            <img class="img-responsive full-pro-image" src="{{ pro.image1.url }}" alt="Project Image One"><br>
+            {{ pro.image1_desc }}
         </div>
-    </div>
+    </div><hr class="star-primary">
     {% endif %}
     {% if pro.image2 %}
     <div class="row full-pro-image">
         <div class="col-xs-12 full-pro-image2">
-            <img class="img-responsive full-pro-image" src="{{ pro.image2.url }}" alt="Project Image Two">
+            <img class="img-responsive full-pro-image" src="{{ pro.image2.url }}" alt="Project Image Two"><br>
+            {{ pro.image2_desc }}
         </div>
-    </div>
+    </div><hr class="star-primary">
     {% endif %}
     {% if pro.image3 %}
     <div class="row full-pro-image">
         <div class="col-xs-12 full-pro-image3">
-            <img class="img-responsive full-pro-image" src="{{ pro.image3.url }}" alt="Project Image Three">
+            <img class="img-responsive full-pro-image" src="{{ pro.image3.url }}" alt="Project Image Three"><br>
+            {{ pro.image3_desc }}
         </div>
-    </div>
+    </div><hr class="star-primary">
     {% endif %}
 </div><p></p>
 {% endfor %}
