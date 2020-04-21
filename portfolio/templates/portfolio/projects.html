@@ -49,7 +49,7 @@
 {% block projects %}
 {% if projects %}
 {% for pro in projects %}
-<div id="pro-{{ pro.id }}" class="project">
+<div id="pro-{{ pro.id }}" class="project" style="width: 100%">
     <div class="row pro-desc">
         <div class="col-xs-12 project-item">
             <h3 class="text-center">
@@ -63,36 +63,33 @@
                 </span>
                 {% endif %}
             </h3>
+            {{ pro.tags }}<br>
+            Started: {{ pro.start_date }} completed: {{ pro.end_date }}
             <p>
-                {{ pro.tags }}<br>
-                Started: {{ pro.start_date }} | completed: {{ pro.end_date }}<br>
                 {{ pro.details }}
             </p>
         </div>
     </div>
     {% if pro.image1 %}
-    <div class="row full-pro-image">
-        <div class="col-xs-12 full-pro-image1">
-            <img class="img-responsive full-pro-image" src="{{ pro.image1.url }}" alt="Project Image One"><br>
-            {{ pro.image1_desc }}
+    <div class="">
+        <div class="">
+            <a href="{{ pro.image1.url }}"><img class="thumbnail img-responsive" src="{{ pro.image1.url }}" alt="Project Image One"></a>
         </div>
-    </div><hr class="star-primary">
+    </div>
     {% endif %}
     {% if pro.image2 %}
-    <div class="row full-pro-image">
-        <div class="col-xs-12 full-pro-image2">
-            <img class="img-responsive full-pro-image" src="{{ pro.image2.url }}" alt="Project Image Two"><br>
-            {{ pro.image2_desc }}
+    <div class=""> 
+        <div class="">
+            <a href="{{ pro.image2.url }}"><img class="img-responsive thumbnail" src="{{ pro.image2.url }}" alt="Project Image Two"></a>
         </div>
-    </div><hr class="star-primary">
+    </div>
     {% endif %}
     {% if pro.image3 %}
-    <div class="row full-pro-image">
-        <div class="col-xs-12 full-pro-image3">
-            <img class="img-responsive full-pro-image" src="{{ pro.image3.url }}" alt="Project Image Three"><br>
-            {{ pro.image3_desc }}
+    <div class="">
+        <div class="">
+            <a href="{{ pro.image3.url }}"><img class="thumbnail img-responsive" src="{{ pro.image3.url }}" alt="Project Image Three"></a>
         </div>
-    </div><hr class="star-primary">
+    </div>
     {% endif %}
 </div><p></p>
 {% endfor %}
@@ -104,7 +101,6 @@
 {% endif %}
 
 {% endblock projects %}
-
 
 </div>
 </section>
@@ -122,4 +118,3 @@
 </section>
 
 {% endblock contents %}
-

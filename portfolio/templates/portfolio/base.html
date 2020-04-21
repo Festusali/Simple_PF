@@ -24,10 +24,10 @@
     <!-- This bootstrap links should only be used in development environment -->
     {% block boot_css %} <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}" /> {% endblock boot_css %}
 
-    {% block boot_js %} <script src="{% static 'scripts/bootstrap.min.js' %}"></script> {% endblock boot_js %}
-
     {% block jquery_js %} <script src="{% static 'scripts/jquery-3.3.1.min.js' %}"></script> {% endblock jquery_js %}
-    <!-- End of bootstrap links -->
+    
+    {% block boot_js %} <script src="{% static 'scripts/bootstrap.min.js' %}"></script> {% endblock boot_js %}
+<!-- End of bootstrap links -->
 
     <!-- Main custom css -->
     {% block css %}
@@ -50,14 +50,18 @@
     <title>{% block page_title %}Simple Portfolio{% endblock page_title %}</title> 
 </head>
 
-
+ 
 <body id="page-top">
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
         <div id="main-header" class="main-header container-fluid">
             {% block header_logo %}
             <div id="logo" class="logo navbar-header page-scroll">
-                
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
                 <a class="navbar-brand" href="#page-top">
                     <div id="logo-image" class="logo-image">
                         {% block logo_image %}<img src="{% static 'logo.png' %}" alt="Logo" width="90px", height="90px"> {% endblock logo_image %}
@@ -67,15 +71,15 @@
             {% endblock header_logo %}
             
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
-                {% comment "Comment off header search box" %}
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <!-- Comment off header search box" 
                 {% block header_search %}
                 <div id="search-bar" class="search-bar">
                     {% block search_box %} <input type="search" id="search" name="search"> {% endblock search_box %}
                     {% block search_button %} <input type="button" class="search-button"> {% endblock search_button %}
                 </div>
                 {% endblock header_search %}
-                {% endcomment %}
+                -->
                 <ul id="site-name" class="site-name nav navbar-nav navbar-center">
                     <li class="page-scroll">
                         <a href="#page-top">{% block site_name %}Simple Portfolio {% endblock site_name %}</a>
@@ -384,7 +388,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Simple Portfolio 2019. All rights reserved.
+                        Copyright &copy; Simple Portfolio {% now "Y" %}. All rights reserved.
                     </div>
                 </div>
             </div>
@@ -392,12 +396,11 @@
     </footer>
 
     <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
+    <div class="scroll-top page-scroll hidden-lg hidden-md">
         <a class="btn btn-primary" href="#page-top">
             <i class="fa fa-chevron-up"></i>
         </a>
     </div>
 
-    
 </body>
 </html>

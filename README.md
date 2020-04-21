@@ -17,7 +17,7 @@ security) with a copy of each message sent to the user's registered email.
             ========================================
 
 To create free Simple Portfolio Account,
-Goto: (https://simpleportfolio.pythonanywhere.com/), and follow the instructions
+Goto: [Simple Portfolio](https://simpleportfolio.pythonanywhere.com/), and follow the instructions
 to get free account which you can setup properly and start using as your
 personal portfolio for attracting and hooking potential clients.
 
@@ -37,7 +37,7 @@ all set.
             ========================================
 
 If you see any bug other issues, please opena new issue via; 
-(https://github.com/Festusali/Simple_PF/issues) here on GitHub or send me a 
+[Open Issue](https://github.com/Festusali/Simple_PF/issues) here on GitHub or send me a 
 mail at isfestus@gmail.com or festusali@gmail.com
 
 
@@ -62,7 +62,7 @@ me, you will surely find me in company of my family and or friends.
 
 I am available for paid remote jobs and you can reach me via email using;
 (isfestus@gmail.com, festusali@gmail.com) see also my portfolio; 
-'https://simpleportfolio.pythonanywhere.com/user/Festus/' Thank you!!!
+[Festus Portfolio](https://simpleportfolio.pythonanywhere.com/user/Festus/) Thank you!!!
 
 
                          Contributing
@@ -77,4 +77,4 @@ of what you've done to help me decide on merging your contributions.
             ========================================
 
 Copyright 2019 Ali Okechukwu Festus. Code released under the MIT 
-(https://github.com/Festusali/Simple_PF/LICENSE) license.
+(https://github.com/Festusali/Simple_PF/blob/master/LICENSE) license.
