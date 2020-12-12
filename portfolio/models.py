@@ -281,7 +281,6 @@ def create_userdata(sender, instance, created, **kwargs):
     if created:
         UserData.objects.create(user=instance)
 
-
 @receiver(post_save, sender=UserModel)
 def save_userdata(sender, instance, **kwargs):
     instance.user_data.save()
