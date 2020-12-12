@@ -6,8 +6,9 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
 
-from .models import UserData, Project, Experience, Certificate, TempUser, Message, UserModel
-
+from portfolio.models import (
+    UserData, Project, Experience, Certificate, TempUser, Message, UserModel
+)
 
 
 class CreateUserForm(UserCreationForm):
@@ -50,12 +51,12 @@ class RegisterUserForm(ModelForm):
 
 
 # Verify temporal user form
-class VerifyUserForm(ModelForm):
-    """Form for verifying temporal user's data"""
-    class Meta:
-        model = TempUser
-        fields = ["code"]
+class VerifyUserForm(forms.Form):
+    """Form for verifying temporal user's email."""
 
+    code = forms.IntegerField(
+        max_value=999999, min_value=100000, help_text="Verification code"
+    )
 
 
 # Edit user data form

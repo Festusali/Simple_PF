@@ -1,45 +1,85 @@
 {% extends './base.html' %}
 {% load static %}
 
-{% block other_nav_links %}
-    
-{% endblock other_nav_links %}
+{% block other_navs %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#features">
+        Features
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#developer">
+        Developer
+    </a>
+</li>
+{% endblock other_navs %}
 
 {% block page_title %}Privacy Policy{% endblock page_title %}
 
 {% block contents %}
-<div class="p-policy">
-    <h1>Privacy Policy</h1>
-</div>
-
-<section id="p-policy" class="info p-policy">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2>{% block title %}Privacy Policy{% endblock title %}</h2>
-        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+<!--Privacy Section-->
+<section id="privacy" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--Privacy Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            Privacy Policy
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!--About Section Sub-Heading-->
+        <h4 class="masthead-subheading text-center font-weight-light mb-3">
+            Learn How We Manage Your Privacy
+        </h4>
     </div>
-</div>
+</section>
 
-<div id="privacy" class="privacy">
-    <div class="row">
-        <div class="col-xs-12 privacy">
-            <p>On the process of creating or updating an account on our website or any of our other services, you provide us (Simple Portfolio) with your personal information like; <strong>your name, pictures, birth date, e-mail address, etc.</strong> And by so doing, you thereby explicitly grant Simple Portfolio, the access to obtain, keep and necessarily use such personal information and possibly other additional information from your social media account(s) which may aswell include your friends and contacts lists. You agree that any information which you provide pursuant to this EULA will be accurate and complete, and that you will update such information promptly following any changes or when required.</p>
-            
-            <p>In addition, certain personal information may be used by us (Simple Portfolio) or made available publicly, without such publication directly and explicitly disclosing your identity. You are aware and agree that in some cases it may be possible to analyse such information and trace your identity, and we (Simple Portfolio) shall not be held responsible in such event. Specifically, you hereby grant Simple Portfolio permission and access to display the name and/or logo of you or your company as part of its customer/user list.</p>
-            
-            <p>The information collected by us (Simple Portfolio) will be held and used in accordance with the Privacy Policy. Simple Portfolio will not sell, lease, rent or otherwise disclose such information other than as stated in the Privacy Policy, provided that we (Simple Portfolio) and its affiliates may use such information, among other things for identification purposes, for the purpose of providing you information, alerts and reports, for improving the Website/Software, products and services provided by Simple Portfolio, for conducting the services and for other communications with you. You acknowledge and agree that Simple Portfolio may use the services of third parties for the above mentioned purposes and therefore share your information with such third parties. You acknowledge and agree that certain personal information which is collected in accordance with the foregoing provisions will be available if necessary to other users of the Website/Software or third parties which were approved by you or your organization, to the extent the license granted hereunder was granted to your organization (including without limitation, your username and profile picture, etc). You are aware that we (Simple Portfolio) may be required, pursuant to applicable laws, rules and regulation, to disclose certain of your information, and you hereby irrevocably and unconditionally agree to any such disclosure.</p>
-            
-            <p>Like many other websites, we use “cookies” (a small file sent to your computer by a website to allow the website to store information which uniquely identifies you) or other similar software to collect data in order to assist you or other users and provide you/them with a more personal experience visits in our Website. You can always disable cookies at your browser, but please note that if you do so, some (or all) of the features and functionality of our Service may not be available to you.</p>
-            
-            <p>We may occasionally inform you of new features, functionality, services and products, and other promotions from Simple Portfolio or its sibling (including parent and or child) websites and or companies as well as send you periodic updates, tips and newsletters/emails. You may opt-out of receiving these correspondences from us by following the unsubscribe instructions included in each Newsletter/email. Note that regardless of your election, we may continue sending you notices to update you on revisions/additions made to this Privacy Policy or to our Terms of Service and other Core Security or Privacy related changes/additions made on our website or other products and services.</p>
-            
-            <p>Thank you for your consent and approval.</p>
+
+<section class="page-section bg-info text-white py-2">
+    <div class="container">
+        <div class="privacy text-justify">
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                During the process of creating or updating an account on our website or any of our other services, you provide us (Simple Portfolio) with your personal information like;  <strong>your name, pictures, birth date, e-mail address, etc.</strong> And by so doing, you thereby explicitly grant Simple Portfolio, the access to obtain, keep and necessarily use such personal information and possibly other additional information from your social media account(s) which may aswell include your friends and contacts lists. You agree that any information which you provide pursuant to this EULA will be accurate and complete, and that you will update such information promptly following any changes or when required.
+            </p>
+
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                In addition, certain personal information may be used by us (Simple Portfolio) or made available publicly, without such publication directly and explicitly disclosing your identity. You are aware and agree that in some cases it may be possible to analyse such information and trace your identity, and we (Simple Portfolio) shall not be held  responsible in such event. Specifically,
+                you hereby grant Simple Portfolio permission and access to display the name and/or logo of you or your company as part of its customer/user list.
+            </p>
+
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                The information collected by us (Simple Portfolio) will be held and used in accordance with the Privacy Policy. Simple Portfolio will not sell, lease, rent or otherwise disclose such information other than as stated in the Privacy Policy, provided that we (Simple Portfolio) and its affiliates may use such information, among other things for identification purposes, for the purpose of providing you information, alerts and reports, for improving the Website/Software, products and services provided by Simple Portfolio, for conducting the services and for other communications with you. You acknowledge and agree that Simple Portfolio may use the services of third parties for the above mentioned purposes and therefore share your information with such third parties. You acknowledge and agree that certain personal information which is collected in accordance with the foregoing provisions will be available if necessary to other users of the
+                Website/Software or third parties which were approved by you or your organization, to the extent the license granted hereunder was granted to your organization (including without limitation, your username and profile picture, etc). You are aware that we (Simple Portfolio) may be required, pursuant to applicable laws, rules and regulation, to disclose certain of your information, and you hereby irrevocably and unconditionally agree to any such disclosure.
+            </p>
+
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                Like many other websites, we use “cookies” (a small file sent to your computer by a website to allow the website to store information which uniquely identifies you) or other similar software to collect data in order to assist you or other users and provide you/them with a more personal experience visits in our Website. You can always disable cookies at your browser, but please note that if you do so, some (or all) of the features and  functionality of our Service may not be available to you.
+            </p>
+
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                We may occasionally inform you of new features, functionality, services and products, and other promotions from Simple Portfolio or its sibling (including parent and or child) websites and or companies as well as send you periodic updates, tips and  newsletters/emails. You may opt-out of
+                receiving these correspondences from us by following the unsubscribe instructions included in each Newsletter/email. Note that regardless of your election, we may continue sending you notices to update you on revisions/additions made to this Privacy Policy or to our Terms of Service and other Core Security or Privacy related changes/additions made on our website or other products and services.
+            </p>
+
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                Thank you for your consent and approval.
+            </p>
         </div>
     </div>
-</div>
-
-</div>
 </section>
 
 {% endblock contents %}

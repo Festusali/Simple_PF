@@ -1,28 +1,62 @@
 {% extends 'portfolio/base.html' %}
 {% load static %}
 
-{% block other_nav_links %}{% endblock other_nav_links %}
+{% block other_navs %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#features">
+        Features
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#developer">
+        Developer
+    </a>
+</li>
+{% endblock other_navs %}
 
 {% block page_title %}403 | Permission Denied{% endblock page_title %}
 
 {% block contents %}
-
-<section id="reset-password" class="info">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2>{% block title %}Permission Denied{% endblock title %}</h2>
-        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+<!--Permission Section-->
+<section id="permission-denied" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--Permission Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            Permission Denied
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!--Permission Section Sub-Heading-->
+        <h4 class="masthead-subheading text-center font-weight-light mb-3">
+            You Lack Necessary Permission To Access This Page
+        </h4>
     </div>
-</div>
+</section>
 
-
-<div class="details">
-        <p>You can't continue because you were denied permission. Please only request for things which you were granted access.</p><br>
-    <p>At the moment you can navigate to the <a href="{% url 'index' %}" title="Simple Portfolio">Home Page</a></p>
-</div>
-
-</div>
+<section class="page-section bg-info text-white py-2">
+    <div class="container">
+        <div class="lead pb-3">
+            <p class="bg-danger text-white p-2">
+                You can't continue because you were denied permission. Please only request for things which you were granted necessary privilege.
+            </p>
+            <div>
+                While we are at it, check out other features at the
+                <a href="{% url 'index' %}" title="Simple Portfolio"
+                    class="btn btn-info btn-sm btn-outline-light mx-2 my-1">
+                    Home Page
+                </a>
+            </div>
+        </div>
+    </div>
 </section>
 
 {% endblock contents %}

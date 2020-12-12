@@ -1,21 +1,61 @@
+{% extends 'portfolio/base.html' %}
 {% load static %}
 
-{% block other_nav_links %}{% endblock other_nav_links %}
+{% block other_navs %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#features">
+        Features
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#developer">
+        Developer
+    </a>
+</li>
+{% endblock other_navs %}
 
-{% block page_title %}<title>Server Error</title>{% endblock page_title %}
+{% block page_title %}Server Error{% endblock page_title %}
 
 {% block contents %}
+<!--500 Section-->
+<section id="500" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--500 Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            Server Downtime
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!--500 Section Sub-Heading-->
+        <h4 class="masthead-subheading text-center font-weight-light mb-3">
+            Server Downtime — Something Went Wrong
+        </h4>
+    </div>
+</section>
 
-
-<h1>Server Downtime</h1>
-<h3>The Server Is Currently Down</h3>
-
-{% block contents %}
-
-<div class="details">
-    <p class="note">Our server is currently down. Please try again later.</p>p>
-        The problem is from our end and we are working on fixing it right away.
-    <p>At the moment you can navigate to the <a href="{% url 'index' %}" title="Simple Portfolio">Home Page</a></p>
-</div>
-
+<section class="page-section bg-info text-white py-2">
+    <div class="container">
+        <div class="lead pb-3">
+            <p class="bg-danger text-white">
+                We encountered an issue trying to process your request. Please try again later.<br>
+                The problem is from our end and we are working on fixing it right away.
+            </p>
+            <div>
+                While we are at it, check out other features at the
+                <a href="{% url 'index' %}" title="Simple Portfolio" class="btn btn-info btn-sm btn-outline-light mx-2 my-1">
+                    Home Page
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock contents %}

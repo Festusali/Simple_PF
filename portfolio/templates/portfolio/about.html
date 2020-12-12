@@ -1,49 +1,86 @@
 {% extends './base.html' %}
 {% load static %}
 
-{% block other_nav_links %}
-    
-{% endblock other_nav_links %}
+{% block other_navs %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#features">
+        Features
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#developer">
+        Developer
+    </a>
+</li>
+{% endblock other_navs %}
 
 {% block page_title %}About Us{% endblock page_title %}
 
 {% block contents %}
-<div class="p-policy">
-    <h1>About Simple Portfolio</h1>
-</div>
-
-<section id="about" class="info about">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2>{% block title %}About Us{% endblock title %}</h2>
-        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+<!--About Section-->
+<section id="about" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--About Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            About Simple Portfolio
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!--About Section Sub-Heading-->
+        <h4 class="masthead-subheading text-center font-weight-light mb-3">
+            Know More About Us
+        </h4>
     </div>
-</div>
+</section>
 
-<div id="about" class="about">
-    <div class="row">
-        <div class="col-xs-12 about">
-            <p><strong>Simple Portfolio</strong> is an online portfolio website developed to help internet enthusiastic and freelancers and by extention other independent contractors showcase their talent and projects to the world and thereby giving them better oportunity to convince potential clients and gain employment or win contracts easier while the client sees and believes in the ability of the contractor they intend to hire.</p>
-
-            <p>We are dedicated to ensuring that our free portfolio platform (Simple Portfolio) remains your best option when it comes to choosing your online portfolio website.
-            The platform is very easy to use and it's efficient navigation system makes your life and that of other users like your potential clients easier and better fulfilling. The design is well informed by the industry standards and we sincerely believe it will meet your choices and expectations.
+<section class="page-section bg-info text-white py-2">
+    <div class="container">
+        <div class="about text-justify">
+            <p class="pt-3">
+                <h4>About</h4>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                <strong>Simple Portfolio</strong> is an online portfolio website developed to help internet enthusiastic and freelancers and by extention other independent contractors showcase their talent and projects to the world and thereby giving them better oportunity to convince  potential clients and gain employment or win contracts easier while the client sees and believes in the ability of the contractor they intend to hire.
             </p>
-            
-            <p>You can add projects, experiences, certificates, send/receive messages, and much more. Currently, you can link to most of the popular social media accounts and other professional networks.</p>
-            
-            <p><strong>Our vission:</strong> is to be the leading portfolio platform in the shortest possible time and to likewise become and remain on the top list of choices that freelancers and other contractors can choose from. In respect to that, be the first stop for clients looking to hire freelancers and independent contractors.</p>
-            
-            <p><strong>Our mission:</strong> is to provide you and every other portfolio seekers with unequalled services that will leave you with no choice after the first attempt than to recommend our platform to friends and other people needing similar services. We strive to ensure that your experience using our services will be so smooth, efficient, and fun while remaining professional in all respects.</p>
-            
-            <p>Simple Portfolio as it stands runs on free hosting and domain and it is in view of this that we keep working round the clock to ensure we meet daring challenges and upgrade the platform to paid services (Hosting and Domain) that our quality of services may increase for the good and ease of our users and cients.</p>
-            
-            <p>Thank you for choosing our platform. We continue to upgrade with the primary purpose of serving you better. Do enjoy and recommend us to others.</p>
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                We are dedicated to ensuring that our free portfolio platform (Simple Portfolio) remains your best option when it comes to choosing your online portfolio website.
+                The platform is very easy to use and it's efficient navigation system makes your life and that of other users like your potential clients easier and better fulfilling. The design is well informed by the industry standards and we sincerely believe it will meet your choices and expectations.
+            </p>
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                You can add projects, experiences, certificates, send/receive messages, and much more. Currently, you can link to most of the popular social media accounts and other professional networks.
+            </p>
+            <p class="pt-3">
+                <h4>Vision</h4>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                Our vision is to be the leading portfolio platform in the shortest possible time and to likewise become and remain on the top list of choices that freelancers and other contractors can choose from. In respect to that, be the first stop for clients looking to hire freelancers and independent contractors.
+            </p>
+            <p class="pt-3">
+                <h4>Mission</h4>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                Our mission is to provide you and every other portfolio seekers with unequalled services that will leave you with no choice after the first attempt than to recommend our platform to friends and other people needing similar services. We strive to ensure that your experience using our services will be so smooth, efficient, and fun while remaining professional in all respects.
+            </p>
+            <p class="pt-3">
+                <h4>Challenges</h4>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                <strong>Simple Portfolio</strong> as it stands runs on free hosting and domain and it is in view of this that we keep working round the clock to ensure we meet daring challenges and upgrade the  platform to paid services (Hosting and Domain) that our quality of services may increase for the good and ease of our users and clients.
+            </p>
+            <p class="pt-3">
+                <h4>Thanks</h4>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                Thank you for choosing our platform. We continue to upgrade with the primary purpose of serving you better. Do enjoy and recommend us to others.
+            </p>
         </div>
     </div>
-</div>
-
-</div>
 </section>
 
 {% endblock contents %}

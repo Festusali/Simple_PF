@@ -1,9 +1,8 @@
-__pycache__
-/media
-/mediafiles
-portfolio/migrations
+__pycache__/
+media/
+mediafiles/
 db.sqlite3
-/.vscode*
+.vscode/
 PF.code-workspace
 startbootstrap-freelancer-3.3.7-1
 .env

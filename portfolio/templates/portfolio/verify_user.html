@@ -3,56 +3,85 @@
 {% load crispy_forms_tags %}
 
 
-{% block other_nav_links %}{% endblock other_nav_links %}
+{% block other_navs %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#features">
+        Features
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#developer">
+        Developer
+    </a>
+</li>
+{% endblock other_navs %}
 
 {% block page_title %}Email Verification{% endblock page_title %}
 
 {% block contents %}
-
-<section id="verify_email" class="info">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2>{% block title %}Verify Email Address{% endblock title %}</h2>
-        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
-    </div>
-</div>
-
-{% if form.is_multipart %}
-    <form enctype="multipart/form-data" method="POST" action="">
-{% else %}
-    <form action="" method="POST">
-{% endif %}
-
-{% csrf_token %}
-
-{% if user_error %}
-    <p class="error">Sorry this user is not pending verification.<br>It could either be that the user's email is verified already or that this username never existed in our database.</p>
-{% endif %}
-
-{% if code_error %}
-    <p class="error">Sorry the code you entered doesn't match with the given username.<br>Please verify and try again.</p>
-{% endif %}
-
-    <div class="row info">
-        <div class="col-xs-12">
-            {{ form|crispy }}
+<!--Verify Section-->
+<section id="verify_email" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--Verify Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            Verify Email Address
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
         </div>
+        <!--Verify Section Sub-Heading-->
+        <h4 class="masthead-subheading text-center font-weight-light mb-3">
+            Email Address Verification Required
+        </h4>
     </div>
-    <div id="success" class="info">
-        <div class="row float-right">
-            <div class="form-group col-xs-12">
-                <input type="submit" value="Verify" class="btn btn-info btn-lg btn-outline text-right">
+</section>
+
+
+<section class="page-section bg-info text-white py-2">
+    <div class="container">
+        <div class="verify">
+            <div class="lead pb-3">
+                We sent a mail to the email address you used during registration. To verify the email, please go to your mail box and follow instructions in the mail. <br>
+                The link and code in the mail is only valid for 48 hours after which your account will be deleted if you fail to verify.
             </div>
+            {% if user_error %}
+            <p class="bg-danger text-white p-3">
+                Sorry this user is not pending verification.<br>
+                Maybe the email have been verified or that the email wasn't registered here on our site.
+            </p>
+            {% endif %}
+            {% if code_error %}
+            <p class="bg-danger text-white p-3">
+                Sorry the code you entered doesn't match the selected user.<br>
+                Please verify and try again.
+            </p>
+            {% endif %}
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="clearfix">
+                    <button type="submit" class="btn btn-info btn-lg btn-outline-light float-left my-1">
+                        Verify Email
+                    </button>
+                    <a href="{% url 'register' %}" title="Register New Account"
+                        class="btn btn-info btn-lg btn-outline-light float-right mx-2 my-1">
+                        Register
+                    </a>
+                    <a href="{% url 'login' %}" title="Login to your Account"
+                        class="btn btn-info btn-lg btn-outline-light float-right mx-2 my-1">
+                        Login
+                    </a>
+                </div>
+            </form>
         </div>
     </div>
-
-</form>
-
-<div class="register">
-    If you don't have an account yet, please see the registration page to get <a href="{% url 'register' %}" title="Create Account">Free Simple Portfolio Account</a> now. Or <a href="{% url 'login' %}" title="Login to Your Account">Login</a> if you already have an account.
-</div>
-
-</div>
 </section>
 {% endblock contents %}

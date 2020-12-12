@@ -3,401 +3,219 @@
 
 <!DOCTYPE html>
 <html lang="en_us">
+
 <head>
-    {% block metatags %} <!-- Required meta tags --> 
-    {% block charset %} <meta charset="utf-8"> {% endblock charset %}
-    {% block viewport %} <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% endblock viewport %}
+    <!-- Required meta tags -->
+    {% block metatags %}
+    {% block charset %}
+    <meta charset="utf-8">
+    {% endblock charset %}
+    {% block viewport %}
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% endblock viewport %}
+    {% block description %}
+    <meta name="description"
+        content="Online multi-tenant portfolio website powered by Django. Create an account and get personalized portfolio for free!">
+    {% endblock description %}
+    {% block author %}
+    <meta name="author" content="Festus Ali">
+    {% endblock author %}
+    {% block keywords %}
+    <meta name="keywords" content="Portfolio, Django, Mult-tenant, personalized, free">
+    {% endblock keywords %}
     {% endblock metatags %}
 
-    <!--Including Bootstrap Essentials -->
-    {% comment "Uncomment in production environment" %}
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    {% endcomment %}
-
-    <!-- This bootstrap links should only be used in development environment -->
-    {% block boot_css %} <link rel="stylesheet" href="{% static 'styles/bootstrap.min.css' %}" /> {% endblock boot_css %}
-
-    {% block boot_js %} <script src="{% static 'scripts/bootstrap.min.js' %}"></script> {% endblock boot_js %}
-
-    {% block jquery_js %} <script src="{% static 'scripts/jquery-3.3.1.min.js' %}"></script> {% endblock jquery_js %}
-    <!-- End of bootstrap links -->
-
-    <!-- Main custom css -->
-    {% block css %}
-    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
-    <link rel="stylesheet" href="{% static 'styles/freelancer.css' %}" />
-    {% endblock css %}
-
+    <!--Font Awesome Free Version 5.15.1-->
     {% block fonts %}
-    <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesome/css/all.css' %}" rel="stylesheet" type="text/css">
     {% endblock fonts %}
 
-    <!-- Main custom jquery/javascript -->
-    {% block js %}
-    <script src="{% static 'scripts/script.js' %}"></script>
-    <script src="{% static 'scripts/freelancer.min.js' %}"></script>
-    {% endblock js %}
-    
-    {% block favicon %} <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon"> {% endblock favicon %}
-    
-    <title>{% block page_title %}Simple Portfolio{% endblock page_title %}</title> 
+    <!--Main Custom CSS Theme (Includes Bootstrap)-->
+    {% block css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    {% endblock css %}
+
+    <!--Favicon-->
+    {% block favicon %}
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    {% endblock favicon %}
+
+    <!-- Page Title-->
+    <title>
+        {% block page_title %}Simple Portfolio{% endblock page_title %}
+    </title>
 </head>
 
-
 <body id="page-top">
-    <!-- Navigation -->
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
-        <div id="main-header" class="main-header container-fluid">
-            {% block header_logo %}
-            <div id="logo" class="logo navbar-header page-scroll">
-                
-                <a class="navbar-brand" href="#page-top">
-                    <div id="logo-image" class="logo-image">
-                        {% block logo_image %}<img src="{% static 'logo.png' %}" alt="Logo" width="90px", height="90px"> {% endblock logo_image %}
-                    </div>
+    <!-- Navigation-->
+    {% block nav %}
+    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
+        <div class="container">
+            {% block brand_header %}
+            <a class="navbar-brand js-scroll-trigger" href="{% block brand_link %}{% url 'index' %}{% endblock brand_link %}">
+                <img src="{% block brand_logo %}{% static 'logo.png' %}{% endblock brand_logo %}" id="logo" style="width: 40px; height: 40px; border-radius: 50%; border: white 1px solid;">
+            </a>
+            <li class="navbar-brand d-lg-none mx-0 mx-lg-1">
+                <a class="nav-link py-3 px-0 px-lg-3 js-scroll-trigger">
+                    {% block brand_text %}
+                    Simple Portfolio
+                    {% endblock brand_text %}
                 </a>
-            </div>
-            {% endblock header_logo %}
-            
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="navbar-collapse" id="bs-example-navbar-collapse-1">
-                {% comment "Comment off header search box" %}
-                {% block header_search %}
-                <div id="search-bar" class="search-bar">
-                    {% block search_box %} <input type="search" id="search" name="search"> {% endblock search_box %}
-                    {% block search_button %} <input type="button" class="search-button"> {% endblock search_button %}
-                </div>
-                {% endblock header_search %}
-                {% endcomment %}
-                <ul id="site-name" class="site-name nav navbar-nav navbar-center">
-                    <li class="page-scroll">
-                        <a href="#page-top">{% block site_name %}Simple Portfolio {% endblock site_name %}</a>
+            </li>
+            {% endblock brand_header %}
+            <button
+                class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded"
+                type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    {% block nav_links %}
+                    {% block other_navs %}
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">
+                            About
+                        </a>
                     </li>
-                </ul>
-                
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#features">
+                            Features
+                        </a>
                     </li>
-                    {% block header_auth %}
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#developer">
+                            Developer
+                        </a>
+                    </li>
+                    {% endblock other_navs %}
+                    {% block auth_links %}
                     {% if request.user.is_authenticated %}
-                    <li class="auth-logout page-scroll">
-                        {% block auth_logout %}<a href="{% url 'logout' %}" title="Logout"><span class="glyphicon glyphicon-log-out"></span>Logout</a>{% endblock auth_logout %}
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' request.user %}">
+                            Profile
+                        </a>
                     </li>
-                    <li class="auth-portfolio page-scroll">
-                        {% block auth_profile %}<a href="{% url 'profile' request.user %}" title="My Profile"><span class="glyphicon glyphicon-user"></span>Profile</a>{% endblock auth_profile %}
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'logout' %}">
+                            Logout
+                        </a>
                     </li>
                     {% else %}
-                    <li class="auth-login page-scroll">
-                        {% block auth_login %}<a href="{% url 'login' %}" title="Login"><span class="glyphicon glyphicon-log-in"></span> Login</a>{% endblock auth_login %}
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'login' %}">
+                            Login
+                        </a>
                     </li>
-                    <li class="auth-register page-scroll">
-                        {% block auth_register %}<a href="{% url 'register' %}" title="Register"><span class="glyphicon glyphicon-user"></span> Register</a>{% endblock auth_register %}
+                    <li class="nav-item mx-0 mx-lg-1">
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'register' %}">
+                            Register
+                        </a>
                     </li>
                     {% endif %}
-                    {% endblock header_auth %}
-                    {% block other_nav_links %}
-                    <li class="page-scroll">
-                        <a href="#about" title="About Me">About</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#contact" title="Contact Me">Contact</a>
-                    </li>
-                    <br>
-                    <li class="page-scroll">
-                        <a href="#projects" title="My Projects">Projects</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#experiences" title="My Experiences">Experiences</a>
-                    </li>
-                    <li class="page-scroll">
-                        <a href="#certificates" title="My Certificates">Certificates</a>
-                    </li>
-                    {% endblock other_nav_links %}
+                    {% endblock auth_links %}
+                    {% endblock nav_links %}
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container-fluid -->
     </nav>
-
-
+    {% endblock nav %}
+    
     {% block contents %}
-    <!-- Header -->
-    {% block profile %}
-    <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    {% block user_avatar %} 
-                    <img class="img-responsive" src="{% static 'images/users/default_avatar2.png' %}" alt="Profile Picture" height="350px" width="400px">
-                    {% endblock user_avatar %}
-                </div>
-                <div class="intro-text col-md-6">
-                    <span class="name">
-                        {% block user_title %}Simple Portfolio{% endblock user_title %}
-                    </span> 
-                    {% block user_desc %}
-                    Welcome to my portfolio
-                    {% endblock user_desc %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    {% block profile_divider %}<hr class="star-light">{% endblock profile_divider %}
-                    <span class="skills">{% block user_skills %}My #tags {% endblock user_skills %}</span>
-                </div>
-            </div>
-        </div>
-    </header>
-    {% endblock profile %}
-
-
-    <!-- Projects Grid Section -->
-    {% block projects %}
-    <section id="projects" class="info">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>{% block projects_title %}Projects{% endblock projects_title %}</h2>
-                    {% block projects_divider %} <hr class="star-primary"> {% endblock projects_divider %}
-                </div>
-            </div>
-            {% block project %}
-            <div class="row">
-                <div class="col-sm-4 project-item">
-                    <img src="" alt="Project 1">
-                </div>
-                <div class="col-sm-4 project-item">
-                    <img src="" alt="Project 1">
-                </div>
-                <div class="col-sm-4 project-item">
-                    <img src="" alt="Project 1">
-                </div>
-            </div>
-            {% endblock project %}
-        </div>
-    </section>
-    {% endblock projects %}
-
-
-    <!-- Experiences Grid Section -->
-    {% block experiences %}
-    <section id="experiences" class="success">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>{% block experiences_title %}Experiences{% endblock experiences_title %} </h2>
-                    {% block experiences_divider %} <hr class="star-light"> {% endblock experiences_divider %}
-                </div>
-            </div>
-            {% block experience %}
-            <div class="row">
-                <div class="col-sm-4 experience-item">
-                    <img src="" alt="Experience 1">
-                </div>
-                <div class="col-sm-4 experience-item">
-                    <img src="" alt="Experience 2">
-                </div>
-                <div class="col-sm-4 experience-item">
-                    <img src="" alt="Experience 3">
-                </div>
-            </div>
-            {% endblock experience %}
-        </div>
-    </section>
-    {% endblock experiences %}
-
-
-    <!-- Certificates Grid Section -->
-    {% block certificates %}
-    <section id="certificates" class="info">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>{% block certificates_title %}Certificates{% endblock certificates_title %} </h2>
-                    {% block certificates_divider %} <hr class="star-primary"> {% endblock certificates_divider %}
-                </div>
-            </div>
-            {% block certificate %}
-            <div class="row">
-                <div class="col-sm-4 certificate-item">
-                    <img src="" alt="Certificate 1">
-                </div>
-                <div class="col-sm-4 certificate-item">
-                    <img src="" alt="Certificate 2">
-                </div>
-                <div class="col-sm-4 certificate-item">
-                    <img src="" alt="Certificate 3">
-                </div>
-            </div>
-            {% endblock certificate %}
-        </div>
-    </section>
-    {% endblock certificates %}
-
-
-    <!-- About Section -->
-    {% block about %}
-    <section id="about" class="success">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>{% block about_title %}About Me {% endblock about_title %} </h2>
-                    {% block about_divider %} <hr class="star-light"> {% endblock about_divider %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-5">
-                    <div class="row">
-                        <div class="col-sm-6 about-avatar">
-                            {% block about_avatar %} 
-                            <img class="img-responsive" src="{% static 'images/users/default_avatar2.png' %}" alt="Profile Picture" height="98%" width="96%">
-                            {% endblock about_avatar %}
-                        </div>
-                        <div class="col-sm-6 about-social">
-                            <ul class="list-inline">
-                                {% block about_social %}Social Accounts{% endblock about_social %}
-                            </ul>
-                            <div class="about-tags">
-                                {% block about_tags %}Hash Tags{% endblock about_tags %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-7 about-bio">
-                    <p>{% block about_bio %}My Biography {% endblock about_bio %}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 about-target">
-                    <p>{% block about_target %}Target Audience{% endblock about_target %}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 about-action col-lg-offset-2 text-center">
-                    {% block about_action %}Send me a quote lets get your work done fast and effeciently.{% endblock about_action %}<br>
-                    <a href="#contact" class="btn btn-lg btn-outline">
-                        <i class="fa fa-chat"></i> Contact Me
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    {% endblock about %}
-
-    
-
-    <!-- Contact Section -->
-    {% block contact %}
-    <section id="contact" class="info">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>{% block contact_title %}Contact Me{% endblock contact_title %}</h2>
-                    {% block contact_divider %}<hr class="star-primary">{% endblock contact_divider %}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <div id="contact">
-                        {% block contact_form %}
-                        {% if form.is_multipart %}
-                            <form enctype="multipart/form-data" method="POST" action="{% url 'message' 'portfolio' %}">
-                        {% else %}
-                            <form action="{% url 'message' 'portfolio' %}" method="POST">
-                        {% endif %}
-                            
-                        {% csrf_token %}
-                            
-                        {{ form|crispy }}
-                            
-                        <button type="submit" class="btn btn-primary btn-outline success">
-                            <span class="glyphicon glyphicon-send"></span> Send Message
-                        </button>
-                            
-                        </form>
-                        {% endblock contact_form %}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    {% endblock contact %}
-
-    
+    {% block header %}
+    {% endblock header %}
     {% endblock contents %}
     
-    <!-- Footer -->
-    <footer class="text-center">
-        <div class="footer-above">
-            <div class="container">
-                <div class="row">
-                    <div class="footer-col col-sm-3">
-                        <h3>Other Projects</h3>
-                        <h4>Websites</h4>
-                        <p><a href="{% url 'index' %}" title="Simple Portfolio">Simple Portfolio</a></p>
-                        <p><a href="https://cbtest.pythonanywhere.com" title="Computer Based Test">Computer Based Test</a></p>
-                        <h4>Open Source</h4>
-                        <p><a href="https://github.com/Festusali/CBTest.git" title="Computer Based Test">CBTest</a></p>
-                        <p><a href="https://github.com/Festusali/Simple_PF.git" title="Simple Portfolio">Simple_PF</a></p>
-                    </div>
-                    <div class="footer-col col-sm-3">
-                        <h3>Let's Connect</h3>
-                        <ul class="list-inline">
-                            <li>
-                                <a href="https://facebook.com/festus.ali.560/" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://twitter.com/alifestus" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="https://github.com/Festusali/" class="btn-social btn-outline"><i class="fa fa-fw fa-github"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="footer-col col-sm-4">
-                        <h3>About Developer</h3>
-                        <p>Ali Okechukwu Festus is a passionate web developer using Python/Django for backend and JavaScript/Jquery, HTML/CSS/Bootstrap as frontend tools. <a href="http://simpleportfolio.pythonanywhere.com/user/Festus/" title="Ali Okechukwu Festus' Portfolio">See Full Portfolio</a></p>
-                    </div>
-                    <div class="footer-col col-sm-2">
-                        <h3>Legal</h3>
-                        <p><a href="{% url 'about' %}" title="About Simple Portfolio">About</a></p>
-                        <p><a href="{% url 'contact' %}" title="Contact Simple Portfolio">Contact</a></p>
-                        <p><a href="{% url 'disclaimer' %}" title="Disclaimer">Disclaimer</a></p>
-                        <p><a href="{% url 'privacy' %}" title="Privacy Policy">Privacy Policy</a></p>
+    {% block footer %}
+    <!-- Footer-->
+    <footer class="footer text-center">
+        <div class="container">
+            <div class="row">
+                <!-- Other Projects-->
+                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">
+                        Projects
+                    </h4>
+                    <div class="lead">
+                        <div>
+                            <a href="https://awe-quote.herokuapp.com/" title="Awesome Quotes">
+                                Awesome Quotes
+                            </a>
+                        </div>
+                        <div>
+                            <a href="https://cbtest.pythonanywhere.com" title="Computer Based Test">
+                                Computer Based Test
+                            </a>
+                        </div>
+                        <div>
+                            <a href="{% url 'index' %}" title="Simple Portfolio">
+                                Simple Portfolio
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="footer-below">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        Copyright &copy; Simple Portfolio 2019. All rights reserved.
+                <!-- Footer Social Icons-->
+                <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Let's Connect</h4>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://facebook.com/festus.ali.560/">
+                        <i class="fab fa-fw fa-facebook-f"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/alifestus">
+                        <i class="fab fa-fw fa-twitter"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://linkedin.com/festus-ali">
+                        <i class="fab fa-fw fa-linkedin-in"></i>
+                    </a>
+                    <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/Festusali/">
+                        <i class="fab fa-fw fa-github"></i>
+                    </a>
+                </div>
+                <!-- Footer About Developer-->
+                <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">About Developer</h4>
+                    <p class="lead mb-0">
+                        Festus is a passionate Full Stack Web Developer who emphasis project  security, scalability and timely delivery. Delivers well tested, UX/UI aware web applications. <a href="http://simpleportfolio.pythonanywhere.com/user/Festus/" title="Ali Okechukwu Festus' Portfolio">See Full Portfolio</a>
+                    </p>
+                </div>
+                <!-- Footer Legal Considerations -->
+                <div class="col-lg-2 col-md-6 mb-5 mb-lg-0">
+                    <h4 class="text-uppercase mb-4">Legal</h4>
+                    <div class="lead mb-0">
+                        <div>
+                            <a href="{% url 'about' %}" title="About Simple Portfolio">About</a>
+                        </div>
+                        <div>
+                            <a href="{% url 'contact' %}" title="Contact Simple Portfolio">Contact</a>
+                        </div>
+                        <div>
+                            <a href="{% url 'disclaimer' %}" title="Disclaimer">Disclaimer</a>
+                        </div>
+                        <div><a href="{% url 'privacy' %}" title="Privacy Policy">Privacy Policy</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
-    <div class="scroll-top page-scroll hidden-sm hidden-xs hidden-lg hidden-md">
-        <a class="btn btn-primary" href="#page-top">
-            <i class="fa fa-chevron-up"></i>
-        </a>
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white">
+        <div class="container"><small>Copyright &copy; Simple Portfolio {% now "Y" %}</small></div>
     </div>
-
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+    <div class="scroll-to-top d-lg-none position-fixed">
+        <a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i
+                class="fa fa-chevron-up"></i></a>
+    </div>
+    {% endblock footer %}
     
+    {% block scripts %}
+    <!-- Jquery, Bootstrap and Jquery Easing Local Copy.-->
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'jquery/jquery.easing.min.js' %}"></script>
+    <!-- Core JS theme-->
+    <script src="{% static 'js/scripts.js' %}"></script>
+    {% endblock scripts %}
 </body>
 </html>

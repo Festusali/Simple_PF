@@ -1,122 +1,146 @@
-{% extends './base.html' %}
+{% extends './profile.html' %}
 {% load static %}
 
-{% block other_nav_links %}
-    <li class="page-scroll">
-        <a href="{% url 'profile' userdata %}#about" title="About {{ userdata }}">About</a>
-    </li>
-    <li class="page-scroll">
-        <a href="{% url 'profile' userdata %}#contact" title="Contact {{ userdata }}">Contact</a>
-    </li>
-    <br>
-    <li class="page-scroll">
-        <a class="active" href="#projects" title="{{ userdata }} Projects">Projects</a>
-    </li>
-    <li class="page-scroll">
-        <a href="{% url 'experiences' userdata %}#experiences" title="{{ userdata }} Experiences">Experiences</a>
-    </li>
-    <li class="page-scroll">
-        <a href="{% url 'certificates' userdata %}#certificates" title="{{ userdata }} Certificates">Certificates</a>
-    </li>
-{% endblock other_nav_links %}
+{% block nav_links %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' userdata %}#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#projects">
+        Projects
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'experiences' userdata %}#experiences">
+        Experiences
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'certificates' userdata %}#certificates">
+        Certificates
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' userdata %}#biodata">
+        Biodata
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' userdata %}#contact">
+        Contact
+    </a>
+</li>
+{% endblock nav_links %}
 
 {% block page_title %}{{ userdata }} Projects{% endblock page_title %}
 
 {% block contents %}
-<div class="container">
-    <h1>Projects</h1>
-</div>
-
-<section id="projects" class="info projects">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2>{% block title %}{{ userdata }} Projects{% endblock title %}</h2>
-        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
-    </div>
-</div>
-
-<div class="details text-center">
-    <h4>
-        Some of {{ userdata }} Projects
-        {% if request.user == userdata.user %}
-        <a class="add-project" href="{% url 'add_project' userdata.user %}" title="Create New Project"><span class="glyphicon glyphicon-plus"></span>New Project</a>
-        {% endif %}
-    </h4>
-</div>
-
-
-{% block projects %}
-{% if projects %}
-{% for pro in projects %}
-<div id="pro-{{ pro.id }}" class="project">
-    <div class="row pro-desc">
-        <div class="col-xs-12 project-item">
-            <h3 class="text-center">
-                {{ pro.title }}
-                {% if request.user == pro.user.user %}
-                <span class="float-right">
-                    <a href="{% url 'edit_project' pro.id %}" title="Edit Project">Edit</a>
-                </span> |
-                <span class="float-right">
-                    <a href="{% url 'del_project' pro.id %}" title="Delete Project">Delete</a>
-                </span>
-                {% endif %}
-            </h3>
-            {{ pro.tags }}<br>
-            Started: {{ pro.start_date }} completed: {{ pro.end_date }}
-            <p>
-                {{ pro.details }}
-            </p>
+<!--Projects Section-->
+<section id="projects" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--Projects Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            {{ userdata.user.first_name }} Projects
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
         </div>
+        <!--Projects Section Sub-Heading-->
+        <h4 class="masthead-subheading text-center font-weight-light mb-3">
+            Some Projects By {{ userdata.user.first_name }}
+            {% if request.user == userdata.user %}
+            <div class="pt-3">
+                <a class="btn btn-outline-light add-project" href="{% url 'add_project' userdata.user %}"
+                    title="Create New Project">
+                    <span class="fas fa-plus"> New Project</span>
+                </a>
+            </div>
+            {% endif %}
+        </h4>
     </div>
-    {% if pro.image1 %}
-    <div class="row full-pro-image">
-        <div class="col-xs-12 full-pro-image1">
-            <img class="img-responsive full-pro-image" src="{{ pro.image1.url }}" alt="Project Image One">
-        </div>
-    </div>
-    {% endif %}
-    {% if pro.image2 %}
-    <div class="row full-pro-image">
-        <div class="col-xs-12 full-pro-image2">
-            <img class="img-responsive full-pro-image" src="{{ pro.image2.url }}" alt="Project Image Two">
-        </div>
-    </div>
-    {% endif %}
-    {% if pro.image3 %}
-    <div class="row full-pro-image">
-        <div class="col-xs-12 full-pro-image3">
-            <img class="img-responsive full-pro-image" src="{{ pro.image3.url }}" alt="Project Image Three">
-        </div>
-    </div>
-    {% endif %}
-</div><p></p>
-{% endfor %}
-
-{% else %}
-<div class="row project">
-    <h3>No Projects</h3>
-</div>
-{% endif %}
-
-{% endblock projects %}
-
-
-</div>
 </section>
 
-<section class="contact success">
-<div class="container success">
-    <div class="row">
-        <div class="contact success">
-            <div class="target">{{ userdata.target }}</div>
-            <div class="action">{{ userdata.action }}</div>
-            <a href="{% url 'profile' userdata %}#contact" title="Request for my services"><input type="button" class="btn btn-info btn-lg btn-outline text-right" value="Request My Services Now!"></a>
+<section class="page-section bg-info text-white py-2">
+    <div class="container">
+        <!--Project Items-->
+        <div class="justify-content-center">
+            {% for pro in projects %}
+            <div id="pro-{{ pro.id }}" class="mx-auto pt-5 mb-5 project">
+                <div class="pro-desc">
+                    <div class="project-item pb-3">
+                        <h3 class="text-center">
+                            {{ pro.title }}
+                        </h3>
+                        {% if request.user == pro.user.user %}
+                        <div class="text-center">
+                            <div>
+                                <span class="fas fa-tags">: {{ pro.tags }}</span>
+                            </div>
+                            [ <a href="{% url 'edit_project' pro.id %}" title="Modify Project"
+                                class="btn btn-sm btn-outline-light mr-3">
+                                Modify
+                            </a>
+                            <a href="{% url 'del_project' pro.id %}" title="Delete Project"
+                                class="btn btn-sm btn-outline-light ml-3">
+                                Delete
+                            </a> ]
+                        </div>
+                        {% endif %}
+                        <time>
+                            Started: {{ pro.start_date }} —  Completed: {{ pro.end_date }}
+                        </time>
+                        <hr class="pb-2">
+                        <div class="lead text-justify">
+                            {{ pro.detail|linebreaks }}
+                        </div>
+                    </div>
+                </div>
+                {% if pro.image1 %}
+                <div class="pb-4">
+                    <figure>
+                        <img class="img-thumbnail img-fluid" src="{{ pro.image1.url }}"  alt="Project Image One">
+                        <figcaption>{{ pro.image1_desc }}</figcaption>
+                    </figure>
+                </div>
+                {% endif %}
+                {% if pro.image2 %}
+                <div class="pb-4">
+                </div>
+                {% endif %}
+                {% if pro.image3 %}
+                <div>
+                    <figure>
+                        <img class="img-thumbnail img-fluid" src="{{ pro.image3.url }}" alt="Project Image Three">
+                        <figcaption>{{ pro.image3_desc }}</figcaption>
+                    </figure>
+                </div>
+                {% endif %}
+            </div>
+            {% empty %}
+            <h4>No Projects Found.</h4>
+            {% endfor %}
         </div>
     </div>
-</div>
+</section>
+
+<section class="page-section bg-primary text-white">
+    <div class="container">
+        <h4>Hire Me</h4>
+        <div class="contact success">
+            <div class="target">{{ userdata.target|linebreaks }}</div>
+            <div class="action">{{ userdata.action|linebreaks }}</div>
+            <a href="{% url 'profile' userdata %}#contact" title="Request for my services">
+                <button type="button" class="btn btn-info btn-lg btn-outline-light">
+                    <span class="fas fa-envelope"> Contact Me</span>
+                </button>
+            </a>
+        </div>
+    </div>
 </section>
 
 {% endblock contents %}
-

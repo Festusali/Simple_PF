@@ -3,61 +3,76 @@
 {% load crispy_forms_tags %}
 
 
-
-{% block other_nav_links %}{% endblock other_nav_links %}
-
-{% block page_title %}Edit Profile{% endblock page_title %}
+{% block nav_links %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' userdata %}#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'projects' userdata %}#projects">
+        Projects
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'experiences' userdata %}#experiences">
+        Experiences
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#certificates">
+        Certificates
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' userdata %}#biodata">
+        Biodata
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' userdata %}#contact">
+        Contact
+    </a>
+</li>
+{% endblock nav_links %}
 
 {% block contents %}
-
-<section id="edit_profile" class="info">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2>{% block title %}Edit User Profile{% endblock title %}</h2>
-        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
-    </div>
-</div>
-
-<div class="edit_profile">
-    You can also edit: 
-    {% if basic %}
-    <a href="{% url 'edit_profile' username=user basic=0 %}" title="More User Details">More User Details</a>
-    {% else %}
-    <a href="{% url 'edit_profile' username=user basic=1 %}" title="More User Details">Basic User Details</a>
-    {% endif %}
-</div>
-
-
-{% if form.is_multipart %}
-    <form enctype="multipart/form-data" method="POST" action="">
-{% else %}
-    <form action="" method="POST">
-{% endif %}
-
-    {% csrf_token %}
-
-    {{ form|crispy }}
-    <div id="success" class="info"></div>
-    <div class="row float-right">
-        <div class="form-group col-xs-12">
-            <input type="submit" value="Save Changes" class="btn btn-info btn-lg btn-outline text-right">
+<!--Modify Profile Section-->
+<section id="edit_profile" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--Modify Profile Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            Modify Your Profile
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
         </div>
+        <!--Certificates Section Sub-Heading-->
+        <h4 class="masthead-subheading text-center font-weight-light mb-3">
+            Modify Your Personal Details
+        </h4>
     </div>
-
-</form>
-
-<div class="edit_profile">
-    You can also edit: 
-    {% if basic %}
-    <a href="{% url 'edit_profile' username=user basic=0 %}" title="More User Details">More User Details</a>
-    {% else %}
-    <a href="{% url 'edit_profile' username=user basic=1 %}" title="More User Details">Basic User Details</a>
-    {% endif %}
-</div>
-
-
-</div>
 </section>
 
+<section class="page-section bg-info text-white py-2">
+    <div class="container">
+        <div>
+            <div class="lead pb-3">
+                Update your profile to have greater chances of success. The more complete your profile is, the better
+                you appear before potential clients.
+            </div>
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form1|crispy }}
+                {{ form2|crispy }}
+                <button type="submit" class="btn btn-info btn-lg btn-outline-light">
+                    Save Changes
+                </button>
+            </form>
+        </div>
+    </div>
+</section>
 {% endblock contents %}

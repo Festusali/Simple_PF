@@ -2,61 +2,97 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block other_navs %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#features">
+        Features
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#developer">
+        Developer
+    </a>
+</li>
+{% endblock other_navs %}
 
-{% block other_nav_links %}
-    
-{% endblock other_nav_links %}
-
-{% block page_title %}Contact Us (Simple Portfolio){% endblock page_title %}
+{% block page_title %}Contact Us — Simple Portfolio{% endblock page_title %}
 
 {% block contents %}
-<div class="p-policy">
-    <h1>Contact Simple Portfolio</h1>
-</div>
-
-<section id="contact-us" class="info contact">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2>{% block title %}Contact Simple Portfolio{% endblock title %}</h2>
-        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
-    </div>
-</div>
-
-<div id="details" class="contact">
-    <div class="row">
-        <div class="col-xs-12 contact">
-            <p>Here at Simple Portfolio, we work round the clock to ensure we deliver but the best services, however, we are not perfect and can never be. We therefore acknowledge that there could be some issues you might be facing trying to use our services.</p>
-
-            <p>Maybe you have a recommendation to make. Like a new feature you want us to implement, or possible malfunctioning bits/parts. Even possibly, a non functioning feature. And you want to let us know about them.</p>
-            
-            <p>Have you noticed any bug, loophole or any form of vulnerability that exists here in Simple Portfolio? Such things are not welcomed on this platform and we frown on them heavily.</p>
-            
-            <p>Maybe you fill satisfied using our service and wishes to say thanks. Or you have additional questions not covered in the user guide and want to ask us directly.</p>
-            
-            <p>There is just but endless reasons to form a reason to hit us a mail. And for such reasons we are always open and eager to here from you. Just fill the form below then send and we will get your message and reply you as soon as we can.</p>
+<!--Contact Section-->
+<section id="contact" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--Contact Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            Contact Simple Portfolio
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
         </div>
-        <div id="contact">
-            {% if form.is_multipart %}
-                <form enctype="multipart/form-data" method="POST" action="{% url 'message' 'portfolio' %}">
-            {% else %}
-                <form action="{% url 'message' 'portfolio' %}" method="POST">
+        <!--Contact Section Sub-Heading-->
+        <h4 class="masthead-subheading text-center font-weight-light mb-3">
+            Is There Something You Would Want Us To Know About?
+        </h4>
+    </div>
+</section>
+
+<section class="page-section bg-info text-white py-2">
+    <div class="container text-justify">
+        <div class="contact">
+            <h4>
+                Why Contact Us?
+            </h4>
+            <p class="lead pb-2">
+                Here at <strong>Simple Portfolio</strong>, we work round the clock to ensure we deliver nothing but the best services. However, as humans, we are imperfect and thus need your help to craft the best <em>Online Portfolio</em> ever. <br>
+                You can contact us for some reasons as below or even more.
+            </p>
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                Maybe you have a recommendation to make. Like a new feature you want us to implement, or possible malfunctioning bits/parts. Even possibly, a non functioning feature. And you want to let us know about them.
+            </p>
+
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                Have you noticed any bug, loophole or any form of vulnerability that exists here in Simple Portfolio? Such things are not welcomed on  this platform and we frown on them heavily.
+            </p>
+
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                Maybe you fill satisfied using our service and wishes to say thanks. Or you have additional
+                questions not covered in the user guide and want to ask us directly.
+            </p>
+
+            <p>
+                <i class="fas fa-check fa-2x fa-pull-left"></i>
+                There is just but endless reasons to form a reason to hit us a mail. And for such reasons we are always open and eager to here from you. Just fill the form below then send and we will get your message and reply you as soon as we can.
+            </p>
+        </div>
+        <div id="contact-form" class="pt-5">
+            <h4>Be Specific As Possible</h4>
+            {% if form.errors %}
+            <div class="text-light bg-danger p-3">
+                Something(s) went wrong.
+                {{ form.errors }}
+                Please correct below.
+            </div>
             {% endif %}
-            
-            {% csrf_token %}
-            
-            {{ form|crispy }}
-            
-            <button type="submit" class="btn btn-primary btn-outline success">
-                <span class="glyphicon glyphicon-envelope"></span> Send Message
-            </button>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-lg btn-info btn-outline-light">
+                    <span class="far fa-envelope"> Send Message</span>
+                </button>
             </form>
-            
+
         </div>
     </div>
-</div>
-
-</div>
 </section>
 
 {% endblock contents %}

@@ -2,48 +2,70 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-{% block other_nav_links %}{% endblock other_nav_links %}
+{% block other_navs %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#features">
+        Features
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="/#developer">
+        Developer
+    </a>
+</li>
+{% endblock other_navs %}
 
 {% block page_title %}Log In to Simple Portfolio{% endblock page_title %}
 
 {% block contents %}
-
-<section id="login" class="info">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2>{% block title %}Login to your Account{% endblock title %}</h2>
-        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
+<!--Login Section-->
+<section id="login" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--Login Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            Login In To Your Account
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
     </div>
-</div>
+</section>
 
-<div class="register">
-  <a href="{% url 'register' %}" title="Register new account">New Account </a>
-</div>
-
-{% if form.errors %}
-    <p class="errorlist">Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-
-    <div class="login">
-      {{ form|crispy }}
-      <button type="submit" class="btn btn-primary btn-outline success">
-          <span class="glyphicon glyphicon-log-in"></span> Login
-      </button>
-      <input type="hidden" name="next" value="{{ next }}" /></td>
+<section class="page-section bg-info text-white py-2">
+    <div class="container">
+        <div class="lead pb-3">
+            Quickly login to get started.
+        </div>
+        {% if form.errors %}
+        <p class="bg-danger text-white">
+            Your username and password didn't match. Please try again.
+        </p>
+        {% endif %}
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="hidden" name="next" value="{{ next }}" />
+            <div class="clearfix">
+                <button type="submit" class="btn btn-info btn-lg btn-outline-light float-left my-1">
+                    Login
+                </button>
+                <a href="{% url 'password_reset' %}" title="Reset Account Password" class="btn btn-info btn-lg btn-outline-light float-right mx-2 my-1">
+                    Reset Password?
+                </a>
+                <a href="{% url 'register' %}" title="Register new account" class="btn btn-info btn-lg btn-outline-light float-right mx-2 my-1">
+                    Register
+                </a>
+            </div>
+        </form>
     </div>
-</form>
-
-<div>
-  <a href="{% url 'password_reset' %}">Lost Password?</a> Or <a href="{% url 'register' %}" title="Register new account">Create New Account.</a>
-</div>
-
-<a href="{% url 'index' %}" title="Home Page">Continue without login</a>
-
-</div>
 </section>
 
 {% endblock contents %}

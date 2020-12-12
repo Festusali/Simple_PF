@@ -1,122 +1,135 @@
-{% extends './base.html' %}
+{% extends './profile.html' %}
 {% load static %}
 
-{% block other_nav_links %}
-    <li class="page-scroll">
-        <a href="{% url 'profile' userdata %}#about" title="About {{ userdata }}">About</a>
-    </li>
-    <li class="page-scroll">
-        <a href="{% url 'profile' userdata %}#contact" title="Contact {{ userdata }}">Contact</a>
-    </li>
-    <br>
-    <li class="page-scroll">
-        <a href="{% url 'projects' userdata %}#projects" title="{{ userdata }} Projects">Projects</a>
-    </li>
-    <li class="page-scroll">
-        <a class="active" href="#experiences" title="{{ userdata }} Experiences">Experiences</a>
-    </li>
-    <li class="page-scroll">
-        <a href="{% url 'certificates' userdata %}#certificates" title="{{ userdata }} Certificates">Certificates</a>
-    </li>
-{% endblock other_nav_links %}
+{% block nav_links %}
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' userdata %}#about">
+        About
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'projects' userdata %}#projects">
+        Projects
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#experiences">
+        Experiences
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger"
+        href="{% url 'certificates' userdata %}#certificates">
+        Certificates
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' userdata %}#biodata">
+        Biodata
+    </a>
+</li>
+<li class="nav-item mx-0 mx-lg-1">
+    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'profile' userdata %}#contact">
+        Contact
+    </a>
+</li>
+{% endblock nav_links %}
 
 {% block page_title %}{{ userdata }} Experiences{% endblock page_title %}
 
 {% block contents %}
-<div class="container">
-    <h1>Experiences</h1>
-</div>
-
-<section id="experiences" class="info experiences">
-<div class="container">
-<div class="row">
-    <div class="col-lg-12 text-center">
-        <h2>{% block title %}{{ userdata }} Experiences{% endblock title %}</h2>
-        {% block title_divider %}<hr class="star-primary">{% endblock title_divider %}
-    </div>
-</div>
-
-<div class="details text-center">
-    <h4>
-        Some of {{ userdata }} Experiences
-        {% if request.user == userdata.user %}
-        <a class="add-experience" href="{% url 'add_experience' userdata.user %}" title="Add New Experience"><span class="glyphicon glyphicon-plus"></span>Add Experience</a>
-        {% endif %}
-    </h4>
-</div>
-
-
-{% block experiences %}
-{% if experiences %}
-{% for exp in experiences %}
-<div id="exp-{{ exp.id }}" class="experience">
-    <div class="row exp-desc">
-        <div class="col-xs-12 experience-item">
-            <h3 class="text-center">
-                {{ exp.title }}
-                {% if request.user == exp.user.user %}
-                <span class="float-right">
-                    <a href="{% url 'edit_experience' exp.id %}" title="Edit Experience">Edit</a>
-                </span> |
-                <span class="float-right">
-                    <a href="{% url 'del_experience' exp.id %}" title="Delete Experience">Delete</a>
-                </span>
-                {% endif %}
-            </h3>
-            {{ exp.tags }}<br>
-            Started: {{ exp.start_date }} completed: {{ exp.end_date }}
-            <p>
-                {{ exp.detail }}
-            </p>
+<!--Experiences Section-->
+<section id="experiences" class="masthead bg-primary text-center text-white pb-5">
+    <div class="container">
+        <!--Experiences Section Heading-->
+        <h1 class="page-section-heading text-center text-uppercase">
+            {{ userdata.user.first_name }} Experiences
+        </h1>
+        <!-- Icon Divider-->
+        <div class="divider-custom">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
         </div>
+        <!--Experiences Section Sub-Heading-->
+        <h4 class="masthead-subheading text-center font-weight-light mb-3">
+            Some Experiences By {{ userdata.user.first_name }}
+            {% if request.user == userdata.user %}
+            <div class="pt-3">
+                <a class="btn btn-outline-light add-project" href="{% url 'add_experience' userdata.user %}"
+                    title="Add New Experience">
+                    <span class="fas fa-plus"> Add Experience</span>
+                </a>
+            </div>
+            {% endif %}
+        </h4>
     </div>
-    {% if exp.image1 %}
-    <div class="row full-exp-image">
-        <div class="col-xs-12 full-exp-image1">
-            <img class="img-responsive full-exp-image" src="{{ exp.image1.url }}" alt="Experience Image One">
-        </div>
-    </div>
-    {% endif %}
-    {% if exp.image2 %}
-    <div class="row full-exp-image">
-        <div class="col-xs-12 full-exp-image2">
-            <img class="img-responsive full-exp-image" src="{{ exp.image2.url }}" alt="Experience Image Two">
-        </div>
-    </div>
-    {% endif %}
-    {% if exp.image3 %}
-    <div class="row full-exp-image">
-        <div class="col-xs-12 full-exp-image3">
-            <img class="img-responsive full-exp-image" src="{{ exp.image3.url }}" alt="Experience Image Three">
-        </div>
-    </div>
-    {% endif %}
-</div><p></p>
-{% endfor %}
-
-{% else %}
-<div class="row experience">
-    <h3>No Experiences</h3>
-</div>
-{% endif %}
-
-{% endblock experiences %}
-
-
-</div>
 </section>
 
-<section class="contact success">
-<div class="container success">
-    <div class="row">
+<section class="page-section bg-info text-white py-2">
+    <div class="container">
+        <!--Experience Items-->
+        <div class="justify-content-center">
+            {% for exp in experiences %}
+            <div id="exp-{{ exp.id }}" class="mx-auto pt-5 mb-5 experience">
+                <div class="exp-desc">
+                    <div class="experience-item pb-3">
+                        <h3 class="text-center">
+                            {{ exp.title }}
+                        </h3>
+                        {% if request.user == exp.user.user %}
+                        <div class="text-center">
+                            <div>
+                                <span class="fas fa-tags">: {{ exp.tags }}</span>
+                            </div>
+                            [ <a href="{% url 'edit_experience' exp.id %}" title="Modify Experience"
+                                class="btn btn-sm btn-outline-light mr-3">
+                                Modify
+                            </a>
+                            <a href="{% url 'del_experience' exp.id %}" title="Delete Experience"
+                                class="btn btn-sm btn-outline-light ml-3">
+                                Delete
+                            </a> ]
+                        </div>
+                        {% endif %}
+                        <time>
+                            Started: {{ exp.start_date }} — Completed: {{ exp.end_date }}
+                        </time>
+                        <hr>
+                        <div class="lead text-justify">
+                            {{ exp.detail|linebreaks }}
+                        </div>
+                    </div>
+                </div>
+                {% if exp.image %}
+                <div class="pb-4">
+                    <figure>
+                        <img class="img-thumbnail img-fluid" src="{{ exp.image.url }}" alt="Project Image One">
+                        <figcaption>{{ exp.image_desc }}</figcaption>
+                    </figure>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        {% empty %}
+        <h4>No Projects Found.</h4>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="page-section bg-primary text-white">
+    <div class="container">
+        <h4>Hire Me</h4>
         <div class="contact success">
-            <div class="target">{{ userdata.target }}</div>
-            <div class="action">{{ userdata.action }}</div>
-            <a href="{% url 'profile' userdata %}#contact" title="Request for my services"><input type="button" class="btn btn-info btn-lg btn-outline text-right" value="Request My Services Now!"></a>
+            <div class="target">{{ userdata.target|linebreaks }}</div>
+            <div class="action">{{ userdata.action|linebreaks }}</div>
+            <a href="{% url 'profile' userdata %}#contact" title="Request for my services">
+                <button type="button" class="btn btn-info btn-lg btn-outline-light">
+                    <span class="fas fa-envelope"> Contact Me</span>
+                </button>
+            </a>
         </div>
     </div>
-</div>
 </section>
 
 {% endblock contents %}
-
