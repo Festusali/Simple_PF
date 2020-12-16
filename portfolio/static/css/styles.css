@@ -67,6 +67,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: #fff;
+  overflow-wrap: break-word;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10260,8 +10261,7 @@ form .row:first-child .floating-label-form-group {
 }
 
 .cover .cover-up {
-  max-height: 500px;
-  min-height: 200px;
+  height: 150px;
   overflow: hidden;
   overflow-wrap: break-word;
 }
@@ -10272,9 +10272,9 @@ form .row:first-child .floating-label-form-group {
 }
 
 .cover .avatar {
-  width: 300px;
-  height: 300px;
-  margin-top: -150px;
+  width: 150px;
+  height: 150px;
+  margin-top: -75px;
   overflow: hidden;
 }
 
@@ -10283,6 +10283,36 @@ form .row:first-child .floating-label-form-group {
   height: 100%;
   border: 5px solid white;
   border-radius: 50%;
+}
+
+@media (min-width: 576px) {
+  .cover .cover-up {
+    height: 200px;
+  }
+}
+
+@media (min-width: 768px) {
+  .cover .cover-up {
+    height: 250px;
+  }
+
+  .cover .avatar {
+    width: 200px;
+    height: 200px;
+    margin-top: -100px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .cover .cover-up {
+    height: 350px;
+  }
+
+  .cover .avatar {
+    width: 300px;
+    height: 300px;
+    margin-top: -150px;
+  }
 }
 
 .item-link:hover {
